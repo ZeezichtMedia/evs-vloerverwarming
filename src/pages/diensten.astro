@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const services = [
+  {
+    title: 'Vloerverwarming frezen',
+    description: 'Specialist in het stofvrij invrezen van vloerverwarming in zandcement, beton of anhydriet dekloeren.',
+    link: '/vloerverwarming-frezen',
+    image: 'https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-07-8_result.webp'
+  },
+  {
+    title: 'Dichtsmeren & Egaliseren',
+    description: 'Na het frezen kunnen wij de sleuven vakkundig dichtsmeren of de gehele voer egaliseren.',
+    link: '/dichtsmeren-egaliseren',
+    image: 'https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/07/Vloer-dichtsmeren.webp'
+  },
+  {
+    title: 'Vloeren verwijderen & schuren',
+    description: 'Oude vloerbedekking, lijmresten of coatings verwijderen? Wij schuren uw vloer kaal.',
+    link: '/vloeren-schuren',
+    image: 'https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/WhatsApp-Image-2025-07-23-at-08.25.07-1-1.jpeg'
+  }
+];
+---
+
+<Layout title="Onze Diensten | EVS Vloerverwarming">
+  <Header />
+  <main>
+    <!-- Page Header (Light Theme) -->
+    <section class="relative py-24 min-h-[300px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img 
+              src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-07-6_result.webp" 
+              alt="Diensten EVS Vloerverwarming" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/30"></div>
+        </div>
+        <div class="container relative z-10 text-white text-center">
+            <h1 class="text-4xl md:text-5xl font-black mb-4 drop-shadow-lg text-white">Diensten</h1>
+            <p class="text-xl text-white font-medium max-w-2xl mx-auto drop-shadow-md">
+                Compleet pakket voor vloerrenovatie en comfort.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+      <div class="container">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map(service => (
+            <ServiceCard {...service} />
+          ))}
+        </div>
+        
+        <div class="mt-20 text-center">
+          <h2 class="text-3xl font-bold text-navy mb-6">Advies op maat nodig?</h2>
+          <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+            Elke situatie is anders. Neem contact op voor een persoonlijk adviesgesprek waarin de mogelijkheden voor uw specifieke situatie worden besproken.
+          </p>
+          <a href="/contact" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors">
+            Contact opnemen
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

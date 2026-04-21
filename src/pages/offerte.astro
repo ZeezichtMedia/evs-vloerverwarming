@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Offerte Aanvragen | EVS Vloerverwarming">
+  <Header />
+  <main>
+    <!-- Page Header -->
+    <section class="relative py-24 min-h-[300px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img 
+              src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-07-5_result.webp" 
+              alt="Vloerverwarming resultaat" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/30"></div>
+        </div>
+        <div class="container relative z-10 text-white text-center">
+            <h1 class="text-4xl md:text-5xl font-black mb-4 drop-shadow-lg text-white">Vraag offerte aan</h1>
+            <p class="text-xl text-white font-medium max-w-2xl mx-auto drop-shadow-md">
+                Ontvang binnen 24 uur een vrijblijvende offerte op maat.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="container max-w-4xl">
+
+      <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl">
+        <form class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Voornaam</label>
+                    <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none transition-all" />
+                </div>
+                <div>
+                     <label class="block text-sm font-bold text-gray-700 mb-2">Achternaam</label>
+                     <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none transition-all" />
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">E-mailadres</label>
+                    <input type="email" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none transition-all" />
+                </div>
+                <div>
+                     <label class="block text-sm font-bold text-gray-700 mb-2">Telefoonnummer</label>
+                     <input type="tel" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none transition-all" />
+                </div>
+            </div>
+
+            <div>
+                 <label class="block text-sm font-bold text-gray-700 mb-2">Type woning / ondergrond</label>
+                 <select class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none transition-all">
+                    <option>Maak een keuze...</option>
+                    <option>Zandcement dekvloer</option>
+                    <option>Betonvloer</option>
+                    <option>Tegelvloer (bestaand)</option>
+                    <option>Anders</option>
+                 </select>
+            </div>
+
+             <div>
+                <label class="block text-sm font-bold text-gray-700 mb-2">Gewenste werkzaamheden</label>
+                <div class="space-y-2">
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="rounded text-primary focus:ring-primary" />
+                        <span>Vloerverwarming frezen</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="rounded text-primary focus:ring-primary" />
+                        <span>Dichtsmeren</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="rounded text-primary focus:ring-primary" />
+                        <span>Egaliseren</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="rounded text-primary focus:ring-primary" />
+                        <span>Vloer verwijderen/schuren</span>
+                    </label>
+                </div>
+           </div>
+
+            <div>
+                 <label class="block text-sm font-bold text-gray-700 mb-2">Opmerkingen / Specifieke wensen</label>
+                 <textarea rows="4" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none transition-all"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-lg text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                Vraag offerte aan
+            </button>
+        </form>
+      </div>
+    </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
