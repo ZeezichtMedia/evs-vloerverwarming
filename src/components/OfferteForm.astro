@@ -1,0 +1,412 @@
+---
+const steps = [
+  { num: 1, label: 'Verdieping' },
+  { num: 2, label: 'Type vloer' },
+  { num: 3, label: 'Oppervlakte' },
+  { num: 4, label: 'Warmtebron' },
+  { num: 5, label: 'Verdeler aansluiten' },
+  { num: 6, label: 'Vloer dichtsmeren' },
+  { num: 7, label: 'Montagedatum' },
+  { num: 8, label: 'Jouw gegevens' },
+];
+const today = new Date().toISOString().split('T')[0];
+---
+
+<div class="bg-white p-6 md:p-10 rounded-2xl shadow-xl">
+  <!-- Progress -->
+  <div class="mb-8">
+    <div class="flex items-center justify-between mb-3">
+      <span id="evs-step-label" class="text-sm font-bold text-navy">Stap 1 van {steps.length}: {steps[0].label}</span>
+      <span id="evs-step-counter" class="text-sm text-gray-500">1 / {steps.length}</span>
+    </div>
+    <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+      <div id="evs-progress-bar" class="bg-primary h-full transition-all duration-300" style="width: 12.5%;"></div>
+    </div>
+  </div>
+
+  <form id="evs-offerte-form" class="space-y-6" novalidate>
+    <!-- STEP 1: Verdieping -->
+    <div class="evs-step" data-step="1">
+      <h2 class="text-2xl font-bold mb-6">Welke verdieping?</h2>
+      <div class="grid sm:grid-cols-2 gap-3" data-radio-group="verdieping">
+        {['Begaande grond','Eerste verdieping','Zolder','Anders, namelijk...'].map((label, i) => {
+          const values = ['begaande_grond','eerste_verdieping','zolder','anders'];
+          return (
+            <label class="evs-option cursor-pointer">
+              <input type="radio" name="verdieping" value={values[i]} class="peer sr-only" required />
+              <div class="border-2 border-gray-200 rounded-xl p-4 font-semibold text-gray-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary hover:border-gray-300">
+                {label}
+              </div>
+            </label>
+          );
+        })}
+      </div>
+      <div id="verdieping-anders" class="mt-4 hidden">
+        <input type="text" name="verdieping_anders" placeholder="Specificeer andere verdieping" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+      </div>
+    </div>
+
+    <!-- STEP 2: Type vloer -->
+    <div class="evs-step hidden" data-step="2">
+      <h2 class="text-2xl font-bold mb-6">Type vloer?</h2>
+      <div class="grid sm:grid-cols-2 gap-3" data-radio-group="type_vloer">
+        {[
+          ['cement_dekvloer', 'Cement dekvloer'],
+          ['tegelvloer', 'Tegelvloer'],
+          ['betonvloer', 'Betonvloer'],
+          ['fermacelvloer', 'Fermacelvloer'],
+        ].map(([val, label]) => (
+          <label class="evs-option cursor-pointer">
+            <input type="radio" name="type_vloer" value={val} class="peer sr-only" required />
+            <div class="border-2 border-gray-200 rounded-xl p-4 font-semibold text-gray-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary hover:border-gray-300">
+              {label}
+            </div>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- STEP 3: Oppervlakte -->
+    <div class="evs-step hidden" data-step="3">
+      <h2 class="text-2xl font-bold mb-6">Hoeveel m²?</h2>
+      <label class="block text-sm font-bold text-gray-700 mb-2" for="area_m2">Oppervlakte in m²</label>
+      <input id="area_m2" type="number" name="area_m2" min="1" max="10000" step="0.1" placeholder="Bijvoorbeeld: 100" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-lg focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+    </div>
+
+    <!-- STEP 4: Warmtebron -->
+    <div class="evs-step hidden" data-step="4">
+      <h2 class="text-2xl font-bold mb-6">Warmtebron?</h2>
+      <div class="grid sm:grid-cols-2 gap-3" data-radio-group="warmtebron">
+        {[
+          ['cv_ketel', 'CV ketel'],
+          ['hybride_warmtepomp', 'Hybride warmtepomp'],
+          ['volledige_warmtepomp', 'Volledige warmtepomp'],
+          ['stadsverwarming', 'Stadsverwarming'],
+          ['toekomstige_warmtepomp', 'Toekomstige warmtepomp'],
+        ].map(([val, label]) => (
+          <label class="evs-option cursor-pointer">
+            <input type="radio" name="warmtebron" value={val} class="peer sr-only" required />
+            <div class="border-2 border-gray-200 rounded-xl p-4 font-semibold text-gray-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary hover:border-gray-300">
+              {label}
+            </div>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- STEP 5: Verdeler aansluiten -->
+    <div class="evs-step hidden" data-step="5">
+      <h2 class="text-2xl font-bold mb-6">Wil je de verdeler aansluiten op de warmtebron?</h2>
+      <div class="grid sm:grid-cols-2 gap-3" data-radio-group="verdeler_aansluiten">
+        {[['ja','Ja'],['nee','Nee']].map(([val, label]) => (
+          <label class="evs-option cursor-pointer">
+            <input type="radio" name="verdeler_aansluiten" value={val} class="peer sr-only" required />
+            <div class="border-2 border-gray-200 rounded-xl p-4 font-semibold text-gray-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary hover:border-gray-300">
+              {label}
+            </div>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- STEP 6: Vloer dichtsmeren -->
+    <div class="evs-step hidden" data-step="6">
+      <h2 class="text-2xl font-bold mb-6">Wil je de vloer dichtsmeren?</h2>
+      <div class="grid sm:grid-cols-2 gap-3" data-radio-group="vloer_dichtsmeren">
+        <label class="evs-option cursor-pointer">
+          <input type="radio" name="vloer_dichtsmeren" value="ja" class="peer sr-only" required />
+          <div class="border-2 border-gray-200 rounded-xl p-4 font-semibold text-gray-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary hover:border-gray-300">
+            Ja
+          </div>
+        </label>
+        <label class="evs-option cursor-pointer">
+          <input type="radio" name="vloer_dichtsmeren" value="nee" class="peer sr-only" required />
+          <div class="border-2 border-gray-200 rounded-xl p-4 font-semibold text-gray-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary hover:border-gray-300">
+            Nee
+          </div>
+        </label>
+      </div>
+      <p class="mt-4 text-sm text-gray-600 bg-gray-50 border border-gray-200 rounded-lg p-3">
+        <strong>Let op:</strong> Dichtsmeren is alleen mogelijk als de vloer schoon is, zonder lijmresten van een vorige vloer. Bij lijmresten moet eerst geschuurd worden (extra kosten).
+      </p>
+    </div>
+
+    <!-- STEP 7: Montagedatum -->
+    <div class="evs-step hidden" data-step="7">
+      <h2 class="text-2xl font-bold mb-6">Gewenste montagedatum?</h2>
+      <div class="grid sm:grid-cols-2 gap-3" data-radio-group="montagedatum_type">
+        {[['datum','Specifieke datum'],['weet_niet','Weet ik nog niet']].map(([val, label]) => (
+          <label class="evs-option cursor-pointer">
+            <input type="radio" name="montagedatum_type" value={val} class="peer sr-only" required />
+            <div class="border-2 border-gray-200 rounded-xl p-4 font-semibold text-gray-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary hover:border-gray-300">
+              {label}
+            </div>
+          </label>
+        ))}
+      </div>
+      <div id="montagedatum-input" class="mt-5 hidden">
+        <label class="block text-sm font-bold text-gray-700 mb-2" for="montagedatum">Gewenste datum</label>
+        <div class="evs-date-wrapper relative group">
+          <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+          </span>
+          <input id="montagedatum" type="date" name="montagedatum" min={today} class="evs-date-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl pl-12 pr-4 py-3.5 text-gray-800 font-medium focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all hover:border-gray-300 cursor-pointer" />
+        </div>
+        <p class="mt-2 text-xs text-gray-500">Klik op het veld om een datum te kiezen.</p>
+      </div>
+    </div>
+
+    <!-- STEP 8: Contactgegevens -->
+    <div class="evs-step hidden" data-step="8">
+      <h2 class="text-2xl font-bold mb-6">Jouw gegevens</h2>
+      <div class="space-y-4">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1" for="voornaam">Voornaam*</label>
+            <input id="voornaam" type="text" name="voornaam" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1" for="achternaam">Achternaam*</label>
+            <input id="achternaam" type="text" name="achternaam" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1" for="email">E-mailadres*</label>
+            <input id="email" type="email" name="email" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1" for="telefoon">Telefoonnummer*</label>
+            <input id="telefoon" type="tel" name="telefoon" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+          </div>
+        </div>
+
+        <h3 class="text-lg font-bold pt-4 text-navy">Adres (van installatie)</h3>
+        <div>
+          <label class="block text-sm font-bold text-gray-700 mb-1" for="land">Land*</label>
+          <select id="land" name="land" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none">
+            <option value="Nederland">Nederland</option>
+            <option value="België">België</option>
+          </select>
+        </div>
+        <div class="grid sm:grid-cols-[2fr_1fr] gap-4">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1" for="adres">Straatnaam*</label>
+            <input id="adres" type="text" name="adres" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1" for="huisnummer">Huisnummer*</label>
+            <input id="huisnummer" type="text" name="huisnummer" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1" for="postcode">Postcode*</label>
+            <input id="postcode" type="text" name="postcode" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1" for="plaats">Plaats*</label>
+            <input id="plaats" type="text" name="plaats" required class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-gray-700 mb-1" for="toelichting">Eventuele toelichting</label>
+          <textarea id="toelichting" name="toelichting" rows="4" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:bg-white focus:ring-2 focus:ring-primary outline-none"></textarea>
+        </div>
+        <label class="flex items-start gap-3 text-sm text-gray-700">
+          <input type="checkbox" name="privacy_akkoord" required class="mt-1 rounded text-primary focus:ring-primary" />
+          <span>Ik ga akkoord met de <a href="/privacy-policy" class="text-primary underline" target="_blank">privacyverklaring</a>*</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Error message -->
+    <div id="evs-form-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 text-sm"></div>
+
+    <!-- Navigation -->
+    <div class="flex items-center justify-between pt-6 border-t border-gray-100">
+      <button type="button" id="evs-prev-btn" class="px-6 py-3 rounded-lg font-bold text-gray-700 hover:bg-gray-100 transition-colors invisible">
+        ← Terug
+      </button>
+      <button type="button" id="evs-next-btn" class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-all">
+        Doorgaan →
+      </button>
+      <button type="submit" id="evs-submit-btn" class="hidden bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+        Offerte versturen
+      </button>
+    </div>
+  </form>
+
+  <!-- Success -->
+  <div id="evs-success" class="hidden text-center py-12">
+    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold">✓</div>
+    <h2 class="text-2xl font-bold mb-3">Bedankt voor je aanvraag!</h2>
+    <p class="text-gray-600">Je ontvangt binnen 8 uur een prijsindicatie op het opgegeven e-mailadres.</p>
+  </div>
+</div>
+
+<style>
+  .evs-date-input {
+    color-scheme: light;
+    font-family: var(--font-body);
+  }
+  .evs-date-input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .evs-date-input::-webkit-datetime-edit {
+    padding: 0;
+  }
+  .evs-date-input::-webkit-datetime-edit-fields-wrapper {
+    color: #1d3557;
+  }
+  .evs-date-input::-webkit-datetime-edit-text {
+    color: #94a3b8;
+    padding: 0 4px;
+  }
+  .evs-date-input:invalid::-webkit-datetime-edit {
+    color: #94a3b8;
+  }
+  .evs-date-wrapper::after {
+    content: "";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #9ca3af;
+    border-bottom: 2px solid #9ca3af;
+    transform: translateY(-75%) rotate(45deg);
+    pointer-events: none;
+    transition: border-color 0.2s;
+  }
+  .evs-date-wrapper:focus-within::after {
+    border-color: #e63946;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const TOTAL = 8;
+    const labels = ['Verdieping','Type vloer','Oppervlakte','Warmtebron','Verdeler aansluiten','Vloer dichtsmeren','Montagedatum','Jouw gegevens'];
+    let current = 1;
+
+    const form = document.getElementById('evs-offerte-form');
+    const bar = document.getElementById('evs-progress-bar');
+    const stepLabel = document.getElementById('evs-step-label');
+    const stepCounter = document.getElementById('evs-step-counter');
+    const prevBtn = document.getElementById('evs-prev-btn');
+    const nextBtn = document.getElementById('evs-next-btn');
+    const submitBtn = document.getElementById('evs-submit-btn');
+    const errorBox = document.getElementById('evs-form-error');
+    const successBox = document.getElementById('evs-success');
+
+    function render() {
+      document.querySelectorAll('.evs-step').forEach(el => {
+        el.classList.toggle('hidden', Number(el.dataset.step) !== current);
+      });
+      bar.style.width = (current / TOTAL * 100) + '%';
+      stepLabel.textContent = 'Stap ' + current + ' van ' + TOTAL + ': ' + labels[current - 1];
+      stepCounter.textContent = current + ' / ' + TOTAL;
+      prevBtn.classList.toggle('invisible', current === 1);
+      if (current === TOTAL) {
+        nextBtn.classList.add('hidden');
+        submitBtn.classList.remove('hidden');
+      } else {
+        nextBtn.classList.remove('hidden');
+        submitBtn.classList.add('hidden');
+      }
+      errorBox.classList.add('hidden');
+    }
+
+    function showError(msg) {
+      errorBox.textContent = msg;
+      errorBox.classList.remove('hidden');
+    }
+
+    function validateStep(step) {
+      const stepEl = document.querySelector('.evs-step[data-step="' + step + '"]');
+      if (!stepEl) return true;
+      const radioGroup = stepEl.querySelector('[data-radio-group]');
+      if (radioGroup) {
+        const name = radioGroup.dataset.radioGroup;
+        const chosen = form.querySelector('input[name="' + name + '"]:checked');
+        if (!chosen) { showError('Maak een keuze om verder te gaan.'); return false; }
+        if (name === 'verdieping' && chosen.value === 'anders') {
+          const val = (form.elements['verdieping_anders'].value || '').trim();
+          if (!val) { showError('Specificeer de andere verdieping.'); return false; }
+        }
+        if (name === 'montagedatum_type' && chosen.value === 'datum') {
+          const val = form.elements['montagedatum'].value;
+          if (!val) { showError('Kies een gewenste datum.'); return false; }
+        }
+      }
+      if (step === 3) {
+        const v = parseFloat(form.elements['area_m2'].value);
+        if (!v || v <= 0) { showError('Vul een geldige oppervlakte in.'); return false; }
+      }
+      if (step === 8) {
+        const required = ['voornaam','achternaam','email','telefoon','adres','huisnummer','postcode','plaats'];
+        for (const n of required) {
+          if (!(form.elements[n].value || '').trim()) { showError('Vul alle verplichte velden in.'); return false; }
+        }
+        if (!form.elements['privacy_akkoord'].checked) { showError('Ga akkoord met de privacyverklaring.'); return false; }
+      }
+      return true;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (current > 1) { current--; render(); }
+    });
+    nextBtn.addEventListener('click', () => {
+      if (!validateStep(current)) return;
+      if (current < TOTAL) { current++; render(); }
+    });
+
+    // Conditional inputs
+    form.addEventListener('change', (e) => {
+      const t = e.target;
+      if (t.name === 'verdieping') {
+        document.getElementById('verdieping-anders').classList.toggle('hidden', t.value !== 'anders');
+      }
+      if (t.name === 'montagedatum_type') {
+        document.getElementById('montagedatum-input').classList.toggle('hidden', t.value !== 'datum');
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validateStep(TOTAL)) return;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Versturen...';
+      try {
+        const data = Object.fromEntries(new FormData(form).entries());
+        const res = await fetch('/api/send-offerte', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || 'Versturen mislukt.');
+        }
+        form.classList.add('hidden');
+        document.querySelectorAll('.evs-step, #evs-form-error').forEach(el => el.classList.add('hidden'));
+        successBox.classList.remove('hidden');
+        window.scrollTo({ top: successBox.offsetTop - 100, behavior: 'smooth' });
+      } catch (err) {
+        showError(err.message || 'Er ging iets mis. Probeer het later opnieuw.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Offerte versturen';
+      }
+    });
+
+    render();
+  })();
+</script>
