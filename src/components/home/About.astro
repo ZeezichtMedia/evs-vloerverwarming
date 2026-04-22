@@ -1,0 +1,103 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section class="relative py-20 lg:py-32 bg-white overflow-hidden">
+  <div class="container">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Image stack -->
+      <div class="relative">
+        <div class="reveal-left relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
+          <img
+            src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-07-6_result.webp"
+            alt="Erik van Sighem aan het werk"
+            class="w-full h-full object-cover card-img-zoom"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-800/40 to-transparent"></div>
+        </div>
+
+        <!-- Floating card -->
+        <div class="reveal-scale stagger-2 absolute -bottom-6 -right-4 sm:-right-8 frosted rounded-2xl p-6 max-w-[260px]">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="w-12 h-12 rounded-full bg-primary text-white grid place-items-center font-heading font-black text-xl">E</div>
+            <div>
+              <p class="font-heading font-bold text-ink-500 leading-tight">Erik van Sighem</p>
+              <p class="text-xs text-stone-500">Oprichter</p>
+            </div>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed italic">
+            "Elke vloer is anders. Daarom werk ik persoonlijk mee op elk project."
+          </p>
+        </div>
+
+        <!-- Stat badge -->
+        <div class="reveal-scale stagger-3 absolute -top-4 -left-4 bg-primary text-white rounded-2xl p-5 shadow-2xl shadow-primary/30 text-center">
+          <div class="font-heading font-black text-4xl leading-none">20<span class="text-ember-300">+</span></div>
+          <div class="text-[10px] uppercase tracking-widest font-heading font-bold mt-1">Jaar ervaring</div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div>
+        <SectionHeading
+          eyebrow="Over EvS"
+          title={`Ervaring waar je op kunt <span class="text-primary">bouwen</span>.`}
+          lead="Sinds 2001 is Erik van Sighem de drijvende kracht achter EvS Vloerverwarming. Geen tussenpersonen, geen callcenter — gewoon een vakman die weet wat hij doet."
+        />
+
+        <div class="reveal stagger-3 mt-8 space-y-5 text-slate-600 leading-relaxed">
+          <p>
+            Of het nu gaat om een enkele ruimte of een complete woning: bij EvS ben je aan het juiste adres. We werken uitsluitend met professionele apparatuur om stofvrij te kunnen frezen in beton, zandcement en andere dekvloeren.
+          </p>
+          <p>
+            Kwaliteit en netheid staan bij EvS op nummer één. Daar draait het om.
+          </p>
+        </div>
+
+        <div class="reveal stagger-4 mt-10 grid grid-cols-2 gap-5">
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <div>
+              <p class="font-heading font-bold text-ink-500">100% Stofvrij</p>
+              <p class="text-sm text-slate-500">Industriële afzuiging</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <div>
+              <p class="font-heading font-bold text-ink-500">Eigen apparatuur</p>
+              <p class="text-sm text-slate-500">Top materialen</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <div>
+              <p class="font-heading font-bold text-ink-500">Persoonlijk contact</p>
+              <p class="text-sm text-slate-500">Direct met Erik</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary grid place-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <div>
+              <p class="font-heading font-bold text-ink-500">Eerlijke prijzen</p>
+              <p class="text-sm text-slate-500">Transparant</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="/contact" class="reveal stagger-5 mt-10 btn-pill btn-outline">
+          Leer ons kennen
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

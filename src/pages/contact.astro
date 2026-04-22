@@ -2,102 +2,124 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
 ---
 
-<Layout title="Contact | EVS Vloerverwarming">
+<Layout title="Contact | EVS Vloerverwarming" transparentHeader={true}>
   <Header />
   <main>
-    <!-- Page Header -->
-    <section class="relative py-24 min-h-[300px] flex items-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-           <!-- Using a relevant contact/work image -->
-            <img 
-              src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-07-8_result.webp" 
-              alt="Contact EVS" 
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/30"></div>
-        </div>
-        <div class="container relative z-10 text-white text-center">
-            <h1 class="text-4xl md:text-5xl font-black mb-4 drop-shadow-lg text-white">Contact</h1>
-            <p class="text-xl text-white font-medium max-w-2xl mx-auto drop-shadow-md">
-                Vragen of een offerte? EvS staat voor u klaar.
+    <PageHeader
+      eyebrow="Contact"
+      title={`Laat je <span class="text-primary">horen</span>.`}
+      lead="Persoonlijk contact, geen callcenter. Bel, mail of stuur een bericht — je spreekt direct met Erik."
+      image="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-07-8_result.webp"
+      imageAlt="Contact EVS"
+      breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+    />
+
+    <section class="py-20 lg:py-28 bg-stone-50">
+      <div class="container max-w-6xl">
+        <div class="grid lg:grid-cols-[1fr_1.2fr] gap-8">
+          <!-- Contact info -->
+          <div class="reveal bg-white rounded-3xl p-8 lg:p-10 border border-stone-200 shadow-xl relative overflow-hidden">
+            <!-- Thin accent top-bar -->
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary to-ember-400"></div>
+
+            <span class="inline-flex items-center gap-2 text-primary font-heading font-bold text-[11px] uppercase tracking-[0.22em] mb-4">
+              <span class="pulse-dot"></span>
+              Bereikbaar
+            </span>
+            <h2 class="font-heading font-black text-ink-500 text-3xl lg:text-4xl leading-tight mb-4">
+              Direct in gesprek met <span class="text-primary">Erik</span>.
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-10">
+              EvS Vloerverwarming is actief in heel Zeeland en West-Brabant. Bel gerust voor direct advies — ook buiten kantooruren bereikbaar via WhatsApp.
             </p>
-        </div>
-    </section>
 
-    <section class="py-20 bg-gray-50">
-        <div class="container">
-            <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                <!-- Contact Info Card -->
-                <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 h-full">
-                    <h2 class="text-2xl font-bold text-navy mb-6">Contactgegevens</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                        EvS Vloerverwarming is actief in heel Zeeland en West-Brabant. Bel gerust voor direct advies.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-primary/10 p-3 rounded-full text-primary shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13 21.314l-4.657-4.657a8 8 0 0111.314 0z" />
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-navy text-lg">Adres</h3>
-                                <p class="text-gray-600">Zoutelande, Zeeland</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="bg-primary/10 p-3 rounded-full text-primary shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-navy text-lg">Telefoon</h3>
-                                <a href="tel:+31612345678" class="text-gray-600 hover:text-primary transition-colors font-medium">06 - 12 34 56 78</a>
-                                <p class="text-sm text-gray-500 mt-1">Ook beschikbaar via WhatsApp</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="bg-primary/10 p-3 rounded-full text-primary shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-navy text-lg">E-mail</h3>
-                                <a href="mailto:info@evs-vloerverwarming.nl" class="text-gray-600 hover:text-primary transition-colors font-medium">info@evs-vloerverwarming.nl</a>
-                            </div>
-                        </div>
-                    </div>
+            <div class="space-y-2">
+              <a href="tel:+31613564546" class="group flex items-center gap-4 -mx-3 px-3 py-3 rounded-xl hover:bg-stone-50 transition-colors">
+                <span class="shrink-0 w-11 h-11 rounded-xl bg-primary/10 text-primary grid place-items-center group-hover:bg-primary group-hover:text-white transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </span>
+                <div class="min-w-0">
+                  <p class="text-[11px] text-stone-500 uppercase tracking-[0.18em] font-heading font-bold mb-0.5">Telefoon / WhatsApp</p>
+                  <p class="font-heading font-bold text-lg text-ink-500 group-hover:text-primary transition-colors">06 13 56 45 46</p>
                 </div>
+              </a>
 
-                <!-- Contact Form Card -->
-                <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 h-full">
-                    <h2 class="text-2xl font-bold text-navy mb-6">Stuur een bericht</h2>
-                    <form class="space-y-5">
-                         <div>
-                             <label class="block text-sm font-bold text-navy mb-2">Naam</label>
-                             <input type="text" class="w-full border border-gray-200 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder-gray-400" placeholder="Uw naam" />
-                         </div>
-                         <div>
-                             <label class="block text-sm font-bold text-navy mb-2">E-mailadres</label>
-                             <input type="email" class="w-full border border-gray-200 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder-gray-400" placeholder="uw@email.nl" />
-                         </div>
-                         <div>
-                             <label class="block text-sm font-bold text-navy mb-2">Bericht</label>
-                             <textarea rows="5" class="w-full border border-gray-200 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder-gray-400" placeholder="Hoe kan EvS u helpen?"></textarea>
-                         </div>
-                         <button type="submit" class="bg-primary text-white font-bold py-4 px-6 rounded-lg w-full hover:bg-primary-dark transition-all transform hover:-translate-y-1 shadow-md">Bericht versturen</button>
-                    </form>
+              <a href="mailto:info@evs-vloerverwarming.nl" class="group flex items-center gap-4 -mx-3 px-3 py-3 rounded-xl hover:bg-stone-50 transition-colors">
+                <span class="shrink-0 w-11 h-11 rounded-xl bg-primary/10 text-primary grid place-items-center group-hover:bg-primary group-hover:text-white transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </span>
+                <div class="min-w-0">
+                  <p class="text-[11px] text-stone-500 uppercase tracking-[0.18em] font-heading font-bold mb-0.5">E-mail</p>
+                  <p class="font-heading font-bold text-base text-ink-500 group-hover:text-primary transition-colors truncate">info@evs-vloerverwarming.nl</p>
                 </div>
+              </a>
+
+              <div class="flex items-center gap-4 -mx-3 px-3 py-3">
+                <span class="shrink-0 w-11 h-11 rounded-xl bg-stone-100 text-stone-500 grid place-items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><path d="M15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  </svg>
+                </span>
+                <div>
+                  <p class="text-[11px] text-stone-500 uppercase tracking-[0.18em] font-heading font-bold mb-0.5">Werkgebied</p>
+                  <p class="font-heading font-bold text-base text-ink-500">Zeeland & West-Brabant</p>
+                  <p class="text-xs text-stone-500 mt-0.5">Gevestigd in Zoutelande</p>
+                </div>
+              </div>
             </div>
+
+            <div class="mt-8 pt-6 border-t border-stone-200 flex items-center gap-3">
+              <span class="pulse-dot"></span>
+              <span class="text-xs uppercase tracking-widest font-heading font-bold text-stone-500">Doorgaans binnen 2 uur reactie</span>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="reveal stagger-2 bg-white rounded-3xl shadow-xl border border-stone-200 p-8 lg:p-10">
+            <span class="eyebrow mb-4 inline-flex">Stuur een bericht</span>
+            <h2 class="font-heading font-black text-ink-500 text-3xl lg:text-4xl leading-tight mb-8">
+              Jouw vraag, <span class="text-primary">onze aandacht</span>.
+            </h2>
+
+            <form class="space-y-5">
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2">Naam</label>
+                  <input type="text" class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="Je naam" />
+                </div>
+                <div>
+                  <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2">Telefoon</label>
+                  <input type="tel" class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="06 13 56 45 46" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2">E-mailadres</label>
+                <input type="email" class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="jij@email.nl" />
+              </div>
+              <div>
+                <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2">Bericht</label>
+                <textarea rows="6" class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none" placeholder="Hoe kan EvS je helpen?"></textarea>
+              </div>
+              <button type="submit" class="btn-pill btn-primary w-full justify-center py-4">
+                Bericht versturen
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+              </button>
+              <p class="text-xs text-stone-500 text-center">
+                Voor een directe prijsindicatie: <a href="/offerte" class="text-primary font-bold hover:underline">vul het offertestappenplan in</a>.
+              </p>
+            </form>
+          </div>
         </div>
+      </div>
     </section>
   </main>
   <Footer />

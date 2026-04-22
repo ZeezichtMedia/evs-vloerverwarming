@@ -1,0 +1,25 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'ghost' | 'outline' | 'white';
+  icon?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'primary', icon = true, class: extra = '' } = Astro.props;
+const variantCls = {
+  primary: 'btn-primary',
+  ghost: 'btn-ghost',
+  outline: 'btn-outline',
+  white: 'btn-white',
+}[variant];
+---
+
+<a href={href} class={`btn-pill ${variantCls} ${extra}`}>
+  <slot />
+  {icon && (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+    </svg>
+  )}
+</a>

@@ -2,33 +2,42 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
 import OfferteForm from '../components/OfferteForm.astro';
 ---
 
-<Layout title="Offerte Aanvragen | EVS Vloerverwarming">
+<Layout title="Offerte aanvragen | EVS Vloerverwarming" transparentHeader={true}>
   <Header />
   <main>
-    <!-- Page Header -->
-    <section class="relative py-24 min-h-[300px] flex items-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img
-              src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-07-5_result.webp"
-              alt="Vloerverwarming resultaat"
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/30"></div>
-        </div>
-        <div class="container relative z-10 text-white text-center">
-            <h1 class="text-4xl md:text-5xl font-black mb-4 drop-shadow-lg text-white">Vraag offerte aan</h1>
-            <p class="text-xl text-white font-medium max-w-2xl mx-auto drop-shadow-md">
-                Vul binnen een minuut het formulier in en ontvang binnen 8 uur een prijsindicatie.
-            </p>
-        </div>
-    </section>
+    <PageHeader
+      eyebrow="Offerte in 8 uur"
+      title={`Ontvang je<br/><span class="text-primary">prijs op maat</span>.`}
+      lead="Vul binnen een minuut het stappenplan in. Je ontvangt dezelfde werkdag nog een complete prijsindicatie."
+      image="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-07-5_result.webp"
+      imageAlt="Vloerverwarming resultaat"
+      breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Offerte' }]}
+    />
 
-    <section class="py-20 bg-gray-50">
-      <div class="container max-w-3xl">
-        <OfferteForm />
+    <section class="py-20 lg:py-28 bg-stone-50 relative">
+      <div class="container max-w-3xl relative">
+        <div class="reveal">
+          <OfferteForm />
+        </div>
+
+        <div class="reveal stagger-2 mt-10 grid sm:grid-cols-3 gap-4 text-center">
+          <div class="bg-white rounded-2xl p-5 border border-stone-200">
+            <div class="font-heading font-black text-primary text-3xl leading-none mb-1">8u</div>
+            <div class="text-xs text-stone-500 uppercase tracking-widest font-heading font-bold">Reactietijd</div>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-stone-200">
+            <div class="font-heading font-black text-primary text-3xl leading-none mb-1">€0</div>
+            <div class="text-xs text-stone-500 uppercase tracking-widest font-heading font-bold">Vrijblijvend</div>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-stone-200">
+            <div class="font-heading font-black text-primary text-3xl leading-none mb-1">1:1</div>
+            <div class="text-xs text-stone-500 uppercase tracking-widest font-heading font-bold">Persoonlijk</div>
+          </div>
+        </div>
       </div>
     </section>
   </main>

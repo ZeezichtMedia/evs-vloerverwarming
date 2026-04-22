@@ -1,0 +1,61 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  image: string;
+  imageAlt?: string;
+  breadcrumb?: { label: string; href?: string }[];
+}
+
+const { eyebrow, title, lead, image, imageAlt = '', breadcrumb = [] } = Astro.props;
+---
+
+<section class="relative overflow-hidden -mt-20 text-white">
+  <!-- Background image with ken-burns -->
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full h-full object-cover"
+      style="animation: ken-burns 14s ease-out forwards;"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink-800/95 via-ink-800/65 to-ink-800/35"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-ink-800/75 via-transparent to-transparent"></div>
+  </div>
+  <div class="absolute inset-0 grain z-[1]"></div>
+
+  <!-- Fixed top-spacing from header, consistent across all pages -->
+  <div class="relative z-10 container pt-36 sm:pt-40 lg:pt-44 pb-20 sm:pb-24 lg:pb-28 min-h-[440px] sm:min-h-[480px] lg:min-h-[540px] flex flex-col">
+    {breadcrumb.length > 0 && (
+      <nav class="flex items-center gap-2 text-white/60 text-xs sm:text-sm mb-6 font-medium">
+        {breadcrumb.map((c, i) => (
+          <>
+            {c.href ? (
+              <a href={c.href} class="hover:text-white transition-colors">{c.label}</a>
+            ) : (
+              <span class="text-white">{c.label}</span>
+            )}
+            {i < breadcrumb.length - 1 && <span class="text-white/30">/</span>}
+          </>
+        ))}
+      </nav>
+    )}
+    {eyebrow && (
+      <span class="eyebrow eyebrow-light mb-4 inline-flex w-fit">{eyebrow}</span>
+    )}
+    <h1
+      set:html={title}
+      class="text-balance font-black text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.02] tracking-[-0.02em] mb-4 max-w-3xl"
+      style="animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 0.1s;"
+    />
+    {lead && (
+      <p
+        class="text-white/80 text-base sm:text-lg max-w-xl leading-relaxed"
+        style="animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 0.25s;"
+      >
+        {lead}
+      </p>
+    )}
+  </div>
+</section>

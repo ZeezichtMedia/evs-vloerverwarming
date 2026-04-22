@@ -1,0 +1,28 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  align?: 'left' | 'center';
+  theme?: 'light' | 'dark';
+}
+
+const { eyebrow, title, lead, align = 'left', theme = 'light' } = Astro.props;
+const alignCls = align === 'center' ? 'text-center mx-auto' : 'text-left';
+const eyebrowCls = theme === 'dark' ? 'eyebrow eyebrow-light' : 'eyebrow';
+const titleCls = theme === 'dark' ? 'text-white' : 'text-ink-500';
+const leadCls = theme === 'dark' ? 'text-white/70' : 'text-slate-600';
+---
+
+<div class={`max-w-3xl ${alignCls}`}>
+  {eyebrow && (
+    <span class={`${eyebrowCls} reveal mb-4`}>{eyebrow}</span>
+  )}
+  <h2
+    set:html={title}
+    class={`reveal stagger-1 text-balance font-black text-3xl sm:text-4xl md:text-5xl leading-[1.05] mb-5 ${titleCls}`}
+  />
+  {lead && (
+    <p class={`reveal stagger-2 text-lg leading-relaxed ${leadCls}`}>{lead}</p>
+  )}
+</div>

@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+
+const updated = '1 oktober 2025';
+---
+
+<Layout title="Privacyverklaring | EVS Vloerverwarming" transparentHeader={true}>
+  <Header />
+  <main>
+    <PageHeader
+      eyebrow="Juridisch"
+      title={`Jouw privacy,<br/><span class="text-primary">onze zorg</span>.`}
+      lead="We verwerken alleen wat nodig is om je te helpen. Niets meer, niets minder."
+      image="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-07-6_result.webp"
+      imageAlt="EVS Vloerverwarming"
+      breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Privacyverklaring' }]}
+    />
+
+    <section class="py-20 lg:py-28 bg-white">
+      <div class="container max-w-3xl">
+        <div class="reveal mb-10 flex items-center gap-3 text-sm text-stone-500">
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+          <span>Laatst bijgewerkt: <strong class="text-ink-500">{updated}</strong></span>
+        </div>
+
+        <article class="prose-content space-y-8 text-slate-600 leading-relaxed">
+          <div class="reveal">
+            <p class="text-lg">
+              EVS Vloerverwarming ("EvS", "wij") respecteert je privacy. In deze verklaring leggen we uit welke persoonsgegevens we verwerken, waarom we dat doen en welke rechten je hebt. We houden het kort en begrijpelijk.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">1. Wie zijn wij?</h2>
+            <p>
+              EVS Vloerverwarming is gevestigd in Zoutelande (Zeeland) en is actief in Zeeland en West-Brabant. Voor privacyvragen ben je welkom via <a href="mailto:info@evs-vloerverwarming.nl" class="text-primary font-semibold hover:underline">info@evs-vloerverwarming.nl</a> of <a href="tel:+31613564546" class="text-primary font-semibold hover:underline">06 13 56 45 46</a>.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">2. Welke gegevens verwerken wij?</h2>
+            <p class="mb-4">Wanneer je het offerteformulier of contactformulier invult, verwerken wij:</p>
+            <ul class="space-y-2 ml-1">
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">✓</span> Voor- en achternaam</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">✓</span> E-mailadres</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">✓</span> Telefoonnummer</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">✓</span> Adresgegevens (alleen bij offerteaanvragen — installatielocatie)</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">✓</span> Technische details over je project (oppervlakte, type vloer, warmtebron etc.)</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">✓</span> Eventuele toelichting die jij zelf meestuurt</li>
+            </ul>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">3. Waarvoor gebruiken we deze gegevens?</h2>
+            <p class="mb-4">Uitsluitend voor deze doelen:</p>
+            <ul class="space-y-2 ml-1">
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Het opstellen en versturen van een prijsindicatie of offerte</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Beantwoorden van je vraag of contactverzoek</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Het uitvoeren van de werkzaamheden wanneer je akkoord gaat met een offerte</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Het voldoen aan wettelijke (fiscale) bewaarplichten</li>
+            </ul>
+            <p class="mt-4">Wij verkopen je gegevens <strong class="text-ink-500">nooit</strong> aan derden en gebruiken ze niet voor marketing, tenzij je daar nadrukkelijk toestemming voor hebt gegeven.</p>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">4. Rechtsgrond</h2>
+            <p>
+              De verwerking is gebaseerd op je toestemming (bij het versturen van een formulier) en op de uitvoering van een overeenkomst (bij een bevestigde opdracht). Voor fiscale administratie geldt een wettelijke plicht.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">5. Hoe lang bewaren wij je gegevens?</h2>
+            <p class="mb-4">We bewaren je gegevens niet langer dan nodig:</p>
+            <ul class="space-y-2 ml-1">
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> <strong class="text-ink-500">Offerteaanvragen zonder vervolg:</strong> maximaal 12 maanden</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> <strong class="text-ink-500">Uitgevoerde opdrachten:</strong> 7 jaar (wettelijke bewaartermijn voor administratie)</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> <strong class="text-ink-500">Contactberichten:</strong> maximaal 12 maanden</li>
+            </ul>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">6. Met wie delen we gegevens?</h2>
+            <p>
+              Alleen met partijen die wij nodig hebben voor onze dienstverlening, zoals onze e-mailprovider, boekhouder en hostingpartij. Met elk van deze partijen hebben we een verwerkersovereenkomst. We delen geen gegevens met andere partijen zonder jouw toestemming.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">7. Website en cookies</h2>
+            <p>
+              Deze website gebruikt alleen functionele en noodzakelijke cookies. We zetten geen tracking-cookies en gebruiken geen advertentieplatformen. Je logbestanden (IP-adres, browsertype) worden beperkt bewaard voor veiligheid en foutanalyse.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">8. Beveiliging</h2>
+            <p>
+              Formulierverkeer loopt via versleutelde verbindingen (HTTPS). E-mails worden verstuurd via een beveiligde SMTP-verbinding. Toegang tot persoonsgegevens is beperkt tot Erik van Sighem en onze boekhouder.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">9. Jouw rechten</h2>
+            <p class="mb-4">Op grond van de AVG heb je het recht om:</p>
+            <ul class="space-y-2 ml-1">
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Inzage te krijgen in de gegevens die wij van je hebben</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Onjuiste gegevens te laten corrigeren</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Je gegevens te laten verwijderen (als we geen wettelijke plicht hebben om ze te bewaren)</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Bezwaar te maken tegen verwerking</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Je gegevens mee te nemen (dataportabiliteit)</li>
+              <li class="flex items-start gap-3"><span class="text-primary mt-1">•</span> Een klacht in te dienen bij de <a href="https://autoriteitpersoonsgegevens.nl" class="text-primary font-semibold hover:underline" target="_blank" rel="noopener">Autoriteit Persoonsgegevens</a></li>
+            </ul>
+            <p class="mt-4">
+              Een verzoek indienen? Stuur een mail naar <a href="mailto:info@evs-vloerverwarming.nl" class="text-primary font-semibold hover:underline">info@evs-vloerverwarming.nl</a>. We reageren binnen 4 weken.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h2 class="font-heading font-black text-2xl text-ink-500 mb-3">10. Wijzigingen</h2>
+            <p>
+              Deze privacyverklaring kan af en toe worden aangepast. De meest actuele versie vind je altijd hier, voorzien van de datum van laatste wijziging.
+            </p>
+          </div>
+        </article>
+
+        <div class="reveal mt-14 bg-stone-50 border border-stone-200 rounded-3xl p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div>
+            <p class="font-heading font-bold text-ink-500 mb-1">Nog vragen over je gegevens?</p>
+            <p class="text-slate-600 text-sm">We helpen je graag — persoonlijk en snel.</p>
+          </div>
+          <a href="/contact" class="btn-pill btn-primary shrink-0">
+            Neem contact op
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .prose-content a:not(.btn-pill) { transition: color 0.2s; }
+</style>

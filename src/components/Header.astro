@@ -1,117 +1,173 @@
 ---
 const links = [
-  { href: '/diensten', label: 'Alle diensten' },
-  { href: '/vloerverwarming-frezen', label: 'Vloerverwarming frezen' },
-  { href: '/dichtsmeren-egaliseren', label: 'Dichtsmeren of egaliseren' },
-  { href: '/vloeren-schuren', label: 'Vloeren schuren' },
+  { href: '/diensten', label: 'Diensten' },
+  { href: '/vloerverwarming-frezen', label: 'Frezen' },
+  { href: '/dichtsmeren-egaliseren', label: 'Dichtsmeren' },
+  { href: '/vloeren-schuren', label: 'Schuren' },
   { href: '/contact', label: 'Contact' },
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-primary border-b border-primary-dark shadow-md transition-all duration-300" id="main-header">
-  <div class="container flex items-center justify-between h-20">
-    <a href="/" class="flex items-center gap-2 group">
-      <img 
-        src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2021/05/logo-evs-vloerverwarming-wit-e1752674223249.webp" 
-        alt="EVS Vloerverwarming" 
-        class="h-10 w-auto opacity-100 group-hover:opacity-90 transition-opacity" 
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+  data-header
+  transition:persist
+  transition:name="persistent-header"
+>
+  <div class="container flex items-center justify-between h-20 lg:h-20 gap-6">
+    <a href="/" class="flex items-center gap-3 group relative z-10 shrink-0">
+      <img
+        src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2021/05/logo-evs-vloerverwarming-wit-e1752674223249.webp"
+        alt="EVS Vloerverwarming"
+        class="h-9 lg:h-10 w-auto transition-all"
+        data-logo
       />
     </a>
 
     <!-- Desktop Menu -->
-    <nav class="hidden lg:flex items-center gap-8">
-      <ul class="flex items-center gap-6">
-        {links.map(link => (
-          <li>
-            <a 
-              href={link.href} 
-              class="text-sm font-bold text-white hover:text-white/80 transition-colors uppercase tracking-wide"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <a 
-        href="/offerte" 
-        class="bg-white hover:bg-gray-100 text-primary font-bold py-3 px-6 rounded-full transition-all hover:shadow-lg transform hover:-translate-y-0.5 text-sm uppercase tracking-wide"
-      >
-        Offerte aanvragen
-      </a>
+    <nav class="hidden lg:flex items-center gap-0.5">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class="nav-link relative px-3 py-2 text-[13px] font-heading font-bold text-white uppercase tracking-[0.1em] transition-colors"
+        >
+          {link.label}
+          <span class="absolute left-3 right-3 bottom-1 h-[2px] bg-primary scale-x-0 origin-left transition-transform duration-300"></span>
+        </a>
+      ))}
     </nav>
 
-    <!-- Mobile Menu Button -->
-    <button id="mobile-menu-btn" class="lg:hidden text-white p-2 focus:outline-none" aria-label="Menu">
-      <!-- Hamburger Icon -->
-      <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    <!-- Right: phone + CTA -->
+    <div class="hidden lg:flex items-center gap-4">
+      <a
+        href="tel:+31613564546"
+        class="hidden xl:flex items-center gap-2 text-[13px] font-heading font-bold text-white/90 hover:text-white transition-colors"
+        data-header-phone
+      >
+        <span class="w-8 h-8 rounded-full border border-white/20 grid place-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </span>
+        06 13 56 45 46
+      </a>
+      <a href="/offerte" class="btn-pill btn-primary !py-2.5 !px-5 !text-[12px]">
+        Offerte
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mobile burger -->
+    <button
+      id="mobile-menu-btn"
+      class="lg:hidden relative z-10 w-11 h-11 grid place-items-center rounded-full border border-white/20 text-white"
+      aria-label="Menu"
+      aria-expanded="false"
+    >
+      <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/>
       </svg>
-      <!-- Close Icon (Hidden by default) -->
-      <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
       </svg>
     </button>
   </div>
 
-  <!-- Mobile Menu Dropdown -->
-  <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-xl hidden flex-col divide-y divide-gray-50 text-navy">
-    <nav class="flex flex-col py-2">
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-ink-800/98 backdrop-blur-xl hidden flex-col overflow-y-auto z-40">
+    <nav class="container flex flex-col py-6 gap-1">
       {links.map(link => (
-        <a 
-          href={link.href} 
-          class="font-bold py-4 px-6 hover:bg-gray-50 hover:text-primary transition-colors flex items-center justify-between group"
-          onclick="toggleMenu()"
+        <a
+          href={link.href}
+          class="py-4 px-2 font-heading font-bold text-white text-2xl border-b border-white/10 flex items-center justify-between group"
         >
           {link.label}
           <span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity">→</span>
         </a>
       ))}
-      <div class="p-4 mt-2">
-        <a 
-          href="/offerte" 
-          class="block bg-primary text-white font-bold py-4 rounded-full text-center shadow-md hover:bg-primary-dark transition-all transform active:scale-95"
-          onclick="toggleMenu()"
-        >
-          Offerte aanvragen
-        </a>
-      </div>
+      <a
+        href="tel:+31613564546"
+        class="mt-6 flex items-center gap-3 py-4 px-2 font-heading font-bold text-white"
+      >
+        <span class="w-10 h-10 rounded-full bg-primary grid place-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </span>
+        <div class="flex flex-col">
+          <span class="text-xs text-white/60 font-semibold uppercase tracking-widest">Direct bellen</span>
+          <span class="text-lg">06 13 56 45 46</span>
+        </div>
+      </a>
+      <a href="/offerte" class="btn-pill btn-primary w-full justify-center mt-4 py-4">
+        Offerte aanvragen
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
     </nav>
   </div>
 </header>
 
-<script is:inline>
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const hamburgerIcon = document.getElementById('hamburger-icon');
-  const closeIcon = document.getElementById('close-icon');
-
-  function toggleMenu() {
-    const isHidden = mobileMenu.classList.contains('hidden');
-    
-    if (isHidden) {
-      mobileMenu.classList.remove('hidden');
-      mobileMenu.classList.add('flex');
-      // Icon switch
-      hamburgerIcon.classList.add('hidden');
-      closeIcon.classList.remove('hidden');
-    } else {
-      mobileMenu.classList.add('hidden');
-      mobileMenu.classList.remove('flex');
-      // Icon switch
-      hamburgerIcon.classList.remove('hidden');
-      closeIcon.classList.add('hidden');
-    }
+<style>
+  header[data-solid="true"] {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 10px 40px rgba(10, 13, 19, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
+  header[data-solid="true"] .nav-link { color: var(--color-ink-500); }
+  header[data-solid="true"] .nav-link:hover { color: var(--color-primary); }
+  header[data-solid="true"] .nav-link:hover span { transform: scaleX(1); }
+  header[data-solid="true"] [data-logo] {
+    /* Turn white logo into EVS primary red (#e63946) */
+    filter: brightness(0) saturate(100%) invert(31%) sepia(82%) saturate(2176%) hue-rotate(337deg) brightness(90%) contrast(93%);
+  }
+  header[data-solid="true"] [data-header-phone] { color: var(--color-ink-500); }
+  header[data-solid="true"] [data-header-phone] .w-9 { border-color: rgba(0, 0, 0, 0.1); }
+  header[data-solid="true"] #mobile-menu-btn { color: var(--color-ink-500); border-color: rgba(0, 0, 0, 0.1); }
 
-  menuBtn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMenu();
-  });
+  /* Default transparent mode */
+  header:not([data-solid="true"]) .nav-link:hover span { transform: scaleX(1); }
+</style>
 
-  // Close when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-      toggleMenu();
+<script is:inline>
+  (function () {
+    const header = document.getElementById('main-header');
+    if (!header || header.dataset.initialised === 'true') return;
+    header.dataset.initialised = 'true';
+
+    function updateSolid() {
+      const transparent = document.body.dataset.transparentHeader === 'true';
+      const shouldBeSolid = !transparent || window.scrollY > 80;
+      header.dataset.solid = shouldBeSolid ? 'true' : 'false';
     }
-  });
+    updateSolid();
+    window.addEventListener('scroll', updateSolid, { passive: true });
+    document.addEventListener('astro:page-load', updateSolid);
+
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger-icon');
+    const close = document.getElementById('close-icon');
+    let isOpen = false;
+    function toggleMenu(force) {
+      isOpen = typeof force === 'boolean' ? force : !isOpen;
+      mobileMenu.classList.toggle('hidden', !isOpen);
+      mobileMenu.classList.toggle('flex', isOpen);
+      hamburger.classList.toggle('hidden', isOpen);
+      close.classList.toggle('hidden', !isOpen);
+      menuBtn.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    menuBtn?.addEventListener('click', () => toggleMenu());
+    document.addEventListener('click', (e) => {
+      const link = e.target instanceof Element ? e.target.closest('#mobile-menu a') : null;
+      if (link) toggleMenu(false);
+    });
+  })();
 </script>

@@ -2,42 +2,41 @@
 interface Props {
   title: string;
   description: string;
-  icon?: string;
   link: string;
-  image?: string;
+  image: string;
+  number?: string;
 }
 
-const { title, description, link, image } = Astro.props;
+const { title, description, link, image, number } = Astro.props;
 ---
 
-<div class="group relative bg-white rounded-2xl shadow-2xl overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col border border-gray-50">
-  <!-- Image Header -->
-  <div class="h-48 overflow-hidden relative bg-gray-50">
-    {image ? (
-      <img src={image} alt={title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-    ) : (
-      <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-        </svg>
-      </div>
+<a href={link} class="premium-card group block bg-white border border-stone-200 reveal">
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <img src={image} alt={title} class="card-img-zoom w-full h-full object-cover" loading="lazy" />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink-800/90 via-ink-800/30 to-transparent"></div>
+    {number && (
+      <span class="absolute top-5 left-5 font-heading font-black text-white/90 text-xs tracking-[0.3em] uppercase">
+        {number}
+      </span>
     )}
-    <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-      <span class="text-white font-bold border border-white px-4 py-2 rounded-full">Lees meer</span>
+    <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
+      <h3 class="font-heading font-black text-white text-2xl leading-tight">
+        {title}
+      </h3>
+      <span class="shrink-0 w-11 h-11 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-primary group-hover:border-primary transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+          <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+        </svg>
+      </span>
     </div>
   </div>
-
-  <!-- Content -->
-  <div class="p-8 flex flex-col flex-grow">
-    <h3 class="text-2xl font-bold mb-3 text-navy group-hover:text-primary transition-colors">{title}</h3>
-    <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
-      {description}
-    </p>
-    <a href={link} class="inline-flex items-center text-primary font-bold hover:text-primary-dark group-hover:underline">
-      Ontdek meer
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  <div class="p-6 sm:p-7">
+    <p class="text-slate-600 leading-relaxed mb-5">{description}</p>
+    <span class="inline-flex items-center gap-2 font-heading font-bold text-sm uppercase tracking-[0.12em] text-primary">
+      Meer informatie
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1">
+        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
       </svg>
-    </a>
+    </span>
   </div>
-</div>
+</a>

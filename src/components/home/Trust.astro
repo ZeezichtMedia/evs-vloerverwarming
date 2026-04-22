@@ -1,0 +1,57 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const reasons = [
+  {
+    title: 'Stofvrij werken',
+    description: 'Geavanceerde industriële afzuiging. Geen stof in je meubels, gordijnen of leidingen.',
+    icon: 'M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z M8 12h8 M12 8v8',
+  },
+  {
+    title: 'Zeeland & W-Brabant',
+    description: 'Bekend in de regio. Vaak binnen enkele dagen bij je over de vloer.',
+    icon: 'M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z M15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0z',
+  },
+  {
+    title: 'Binnen één dag klaar',
+    description: 'Frezen, leggen en aansluiten — allemaal op dezelfde werkdag. Geen lange bouwketens.',
+    icon: 'M12 6v6l4 2 M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z',
+  },
+  {
+    title: 'Transparante prijs',
+    description: 'Offerte op maat in 8 uur. Geen verrassingen achteraf, geen verborgen kosten.',
+    icon: 'M4 10h12 M4 14h9 M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2',
+  },
+];
+---
+
+<section class="relative py-20 lg:py-32 bg-white overflow-hidden">
+  <div class="container">
+    <div class="text-center mb-14 lg:mb-20 max-w-3xl mx-auto">
+      <SectionHeading
+        eyebrow="Waarom EvS"
+        title={`Omdat je vloer geen <span class="text-primary">compromis</span> verdient.`}
+        lead="Vier redenen waarom klanten in Zeeland en West-Brabant kiezen voor EvS."
+        align="center"
+      />
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+      {reasons.map((r, i) => (
+        <div class={`reveal stagger-${i + 1} group relative bg-stone-50 border border-stone-200 rounded-3xl p-7 lg:p-8 hover:bg-ink-800 hover:text-white hover:-translate-y-2 hover:border-ink-800 transition-all duration-500`}>
+          <div class="w-14 h-14 rounded-2xl bg-primary text-white grid place-items-center mb-6 group-hover:bg-ember-400 group-hover:text-ink-800 transition-colors duration-500">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d={r.icon}/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-black text-ink-500 group-hover:text-white text-xl mb-3 transition-colors duration-500">
+            {r.title}
+          </h3>
+          <p class="text-slate-600 group-hover:text-white/70 text-sm leading-relaxed transition-colors duration-500">
+            {r.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -2,120 +2,125 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import FAQItem from '../components/ui/FAQItem.astro';
+
+const materials = [
+  { title: 'Lijmresten', description: 'Tapijtlijm, parketlijm en tegelijm worden moeiteloos weggeschuurd.' },
+  { title: 'Coatings & Verf', description: 'Epoxy, betonverf of vuilresten tot op de gezonde betonlaag verwijderd.' },
+  { title: 'Bulten & Oneffenheden', description: 'Hoge punten in de vloer vlakken we af voor een strak resultaat.' },
+  { title: 'Slijtlagen', description: 'Oude toplaag van zandcementvloeren renoveren.' },
+];
 ---
 
-<Layout title="Vloeren Schuren | EVS Vloerverwarming">
+<Layout title="Vloeren Schuren | EVS Vloerverwarming" transparentHeader={true}>
   <Header />
   <main>
-    <section class="relative py-24 min-h-[400px] flex items-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img 
-              src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/Schuurmachine-vloeren-_result.webp" 
-              alt="Vloeren schuren" 
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/30"></div>
-        </div>
-        <div class="container relative z-10 text-white text-center md:text-left">
-            <h1 class="text-4xl md:text-5xl font-black mb-4 drop-shadow-lg text-white">Vloeren Schuren</h1>
-            <p class="text-xl text-white font-medium max-w-2xl drop-shadow-md">Verwijderen van oude lijmresten, coatings en oneffenheden.</p>
-        </div>
-    </section>
+    <PageHeader
+      eyebrow="Dienst 03 — Voorbereiden"
+      title={`Een schone<br/><span class="text-primary">start</span>.`}
+      lead="Lijmresten, coatings en oneffenheden. Wij schuren je vloer kaal en klaar voor de volgende stap."
+      image="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/Schuurmachine-vloeren-_result.webp"
+      imageAlt="Vloeren schuren"
+      breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Diensten', href: '/diensten' }, { label: 'Vloeren schuren' }]}
+    />
 
-    <section class="py-20 bg-gray-50">
-        <div class="container">
-            <div class="flex flex-col lg:flex-row gap-12">
-                <div class="lg:w-2/3">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg mb-12 border border-gray-100">
-                        <h2 class="text-3xl font-bold text-navy mb-6">Een schone start</h2>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Voordat er vloerverwarming gefreesd kan worden, moet de basisvloer schoon en vlak zijn. Oude lijmresten van tapijt, kurk of parket kunnen het frezen onmogelijk maken. Ook oude coatings of verflagen moeten vaak verwijderd worden.
-                        </p>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            EvS beschikt over zware betonschuurmachines met diamantsegmenten. Hiermee schuren we de dekvloer volledig kaal, zodat er een perfecte hechting ontstaat voor egaline of een probleemloze freesklus.
-                        </p>
-                    </div>
-
-                    <h3 class="text-2xl font-bold text-navy mb-6">Wat kan EvS verwijderen?</h3>
-                    <div class="grid sm:grid-cols-2 gap-4 mb-12">
-                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <h4 class="font-bold text-navy text-lg mb-2">Lijmresten</h4>
-                            <p class="text-gray-600">Tapijtlijm, parketlijm en tegelijm worden moeiteloos weggeschuurd.</p>
-                         </div>
-                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <h4 class="font-bold text-navy text-lg mb-2">Coatings & Verf</h4>
-                            <p class="text-gray-600">Epoxy, betonverf of vuilresten worden tot op de gezonde betonlaag verwijderd.</p>
-                         </div>
-                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <h4 class="font-bold text-navy text-lg mb-2">Bulten & Oneffenheden</h4>
-                            <p class="text-gray-600">Hoge punten in de vloer vlakken we af voor een strak resultaat.</p>
-                         </div>
-                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <h4 class="font-bold text-navy text-lg mb-2">Slijtlagen</h4>
-                            <p class="text-gray-600">Oude toplaag van zandcementvloeren renoveren.</p>
-                         </div>
-                    </div>
-
-                    <!-- FAQ Section -->
-                    <h3 class="text-2xl font-bold text-navy mb-6">Veelgestelde vragen</h3>
-                    <div class="space-y-4 mb-12">
-                        <details class="group bg-white rounded-xl shadow-sm border border-gray-100 p-4 [&_summary::-webkit-details-marker]:hidden">
-                            <summary class="flex cursor-pointer items-center justify-between gap-1.5 font-bold text-navy">
-                                <span>Geeft schuren veel stof?</span>
-                                <span class="shrink-0 rounded-full bg-white p-1.5 text-navy sm:p-3 group-open:bg-primary group-open:text-white transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </span>
-                            </summary>
-                            <div class="mt-4 leading-relaxed text-gray-600">
-                                Net als bij het frezen maakt EvS gebruik van industriële stofzuigers die gekoppeld zijn aan de schuurmachines. Hierdoor blijft de stofoverlast tot een absoluut minimum beperkt.
-                            </div>
-                        </details>
-
-                        <details class="group bg-white rounded-xl shadow-sm border border-gray-100 p-4 [&_summary::-webkit-details-marker]:hidden">
-                            <summary class="flex cursor-pointer items-center justify-between gap-1.5 font-bold text-navy">
-                                <span>Verwijderen jullie ook de vloer zelf?</span>
-                                <span class="shrink-0 rounded-full bg-white p-1.5 text-navy sm:p-3 group-open:bg-primary group-open:text-white transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </span>
-                            </summary>
-                            <div class="mt-4 leading-relaxed text-gray-600">
-                                EvS richt zich op het kaal schuren van de ondervloer (zandcement/beton). Het grof verwijderen van tapijt, laminaat of tegels dient door uzelf of een sloopbedrijf te gebeuren. De laatste resten doen wij.
-                            </div>
-                        </details>
-                    </div>
-
-                    <a href="/offerte" class="inline-block bg-primary text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-primary-dark transition-colors transform hover:-translate-y-1">
-                        Vraag vrijblijvend offerte aan
-                    </a>
-                </div>
-                 <div class="lg:w-1/3">
-                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 sticky top-24">
-                        <h3 class="text-xl font-bold text-navy mb-4 border-b border-gray-100 pb-2">Gerelateerde diensten</h3>
-                        <ul class="space-y-3">
-                            <li><a href="/vloerverwarming-frezen" class="text-gray-600 hover:text-primary block py-1 transition-colors flex items-center justify-between group">
-                                Vloerverwarming frezen <span class="text-gray-300 group-hover:text-primary">→</span>
-                            </a></li>
-                            <li><a href="/dichtsmeren-egaliseren" class="text-gray-600 hover:text-primary block py-1 transition-colors flex items-center justify-between group">
-                                Dichtsmeren & Egaliseren <span class="text-gray-300 group-hover:text-primary">→</span>
-                            </a></li>
-                            <li><a href="/contact" class="text-gray-600 hover:text-primary block py-1 transition-colors flex items-center justify-between group">
-                                Contact opnemen <span class="text-gray-300 group-hover:text-primary">→</span>
-                            </a></li>
-                        </ul>
-
-                         <div class="mt-8 bg-primary/5 rounded-lg p-6 text-center">
-                            <p class="font-bold text-navy mb-2">Advies nodig?</p>
-                            <p class="text-sm text-gray-600 mb-4">Twijfelt u over de ondergrond?</p>
-                            <a href="tel:+31612345678" class="text-primary font-bold text-lg hover:underline">06 - 12 34 56 78</a>
-                        </div>
-                    </div>
-                </div>
+    <section class="py-20 lg:py-28 bg-white">
+      <div class="container">
+        <div class="grid lg:grid-cols-[2fr_1fr] gap-12 lg:gap-16">
+          <div class="min-w-0">
+            <div class="reveal">
+              <span class="eyebrow mb-4 inline-flex">Waarom schuren</span>
+              <h2 class="font-heading font-black text-4xl lg:text-5xl text-ink-500 leading-tight mb-6 text-balance">
+                Zonder schone ondergrond, <span class="text-primary">geen perfect resultaat</span>.
+              </h2>
+              <p class="text-slate-600 text-lg leading-relaxed mb-5">
+                Voordat er vloerverwarming gefreesd kan worden, moet de basisvloer schoon en vlak zijn. Oude lijmresten van tapijt, kurk of parket kunnen het frezen onmogelijk maken. Ook oude coatings of verflagen moeten vaak verwijderd worden.
+              </p>
+              <p class="text-slate-600 text-lg leading-relaxed">
+                EvS beschikt over zware betonschuurmachines met diamantsegmenten. Hiermee schuren we de dekvloer volledig kaal, zodat er een perfecte hechting ontstaat voor egaline of een probleemloze freesklus.
+              </p>
             </div>
+
+            <div class="mt-14 lg:mt-20">
+              <h3 class="reveal font-heading font-black text-3xl text-ink-500 mb-8">Wat kan EvS verwijderen?</h3>
+              <div class="grid sm:grid-cols-2 gap-5">
+                {materials.map((m, i) => (
+                  <div class={`reveal stagger-${i + 1} bg-stone-50 border border-stone-200 rounded-2xl p-6 hover:border-primary/50 transition-colors group`}>
+                    <div class="flex items-start gap-4">
+                      <span class="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white grid place-items-center transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M20 6 9 17l-5-5"/>
+                        </svg>
+                      </span>
+                      <div>
+                        <h4 class="font-heading font-bold text-lg text-ink-500 mb-2">{m.title}</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">{m.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="mt-14 lg:mt-20">
+              <h3 class="reveal font-heading font-black text-3xl text-ink-500 mb-8">Veelgestelde vragen</h3>
+              <div class="space-y-3">
+                <FAQItem question="Geeft schuren veel stof?">
+                  Net als bij het frezen maakt EvS gebruik van industriële stofzuigers die gekoppeld zijn aan de schuurmachines. Hierdoor blijft de stofoverlast tot een absoluut minimum beperkt.
+                </FAQItem>
+                <FAQItem question="Verwijderen jullie ook de vloer zelf?">
+                  EvS richt zich op het kaal schuren van de ondervloer (zandcement/beton). Het grof verwijderen van tapijt, laminaat of tegels dient door jezelf of een sloopbedrijf te gebeuren. De laatste resten doen wij.
+                </FAQItem>
+              </div>
+            </div>
+
+            <div class="mt-14 reveal">
+              <a href="/offerte" class="btn-pill btn-primary">
+                Vraag vrijblijvend offerte aan
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <aside class="lg:sticky lg:top-28 h-fit space-y-5">
+            <div class="reveal-right bg-primary text-white rounded-3xl p-7 overflow-hidden relative shadow-xl shadow-primary/25">
+              <div class="absolute inset-0 opacity-30 pointer-events-none" style="background: radial-gradient(ellipse at top right, rgba(245, 158, 11, 0.7), transparent 60%);"></div>
+              <div class="relative">
+                <span class="inline-flex items-center gap-2 text-white/85 font-heading font-bold text-[11px] uppercase tracking-[0.22em] mb-3">
+                  <span class="pulse-dot"></span>
+                  Advies nodig?
+                </span>
+                <h4 class="font-heading font-black text-white text-2xl mb-3">Twijfel je?</h4>
+                <p class="text-white/85 text-sm mb-6 leading-relaxed">Bel Erik — hij kijkt mee op foto en vertelt direct of schuren nodig is.</p>
+                <a href="tel:+31613564546" class="btn-pill btn-white w-full justify-center">
+                  06 13 56 45 46
+                </a>
+              </div>
+            </div>
+
+            <div class="reveal-right stagger-2 bg-white border border-stone-200 rounded-3xl p-7">
+              <h4 class="font-heading font-bold text-ink-500 text-sm uppercase tracking-[0.18em] mb-5 pb-4 border-b border-stone-200">Gerelateerde diensten</h4>
+              <ul class="space-y-3">
+                <li><a href="/vloerverwarming-frezen" class="group flex items-center justify-between text-slate-600 hover:text-primary py-2 transition-colors">
+                  <span>Vloerverwarming frezen</span>
+                  <span class="text-stone-300 group-hover:text-primary group-hover:translate-x-1 transition-all">→</span>
+                </a></li>
+                <li><a href="/dichtsmeren-egaliseren" class="group flex items-center justify-between text-slate-600 hover:text-primary py-2 transition-colors">
+                  <span>Dichtsmeren & Egaliseren</span>
+                  <span class="text-stone-300 group-hover:text-primary group-hover:translate-x-1 transition-all">→</span>
+                </a></li>
+                <li><a href="/contact" class="group flex items-center justify-between text-slate-600 hover:text-primary py-2 transition-colors">
+                  <span>Contact opnemen</span>
+                  <span class="text-stone-300 group-hover:text-primary group-hover:translate-x-1 transition-all">→</span>
+                </a></li>
+              </ul>
+            </div>
+          </aside>
         </div>
+      </div>
     </section>
   </main>
   <Footer />

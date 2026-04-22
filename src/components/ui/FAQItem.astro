@@ -1,0 +1,39 @@
+---
+interface Props {
+  question: string;
+}
+const { question } = Astro.props;
+---
+
+<details class="faq-item group bg-white rounded-2xl border border-stone-200 overflow-hidden transition-all hover:border-primary/40 hover:shadow-lg">
+  <summary class="flex cursor-pointer items-center justify-between gap-4 p-6 font-bold text-ink-500 text-lg">
+    <span class="pr-4">{question}</span>
+    <span class="faq-icon shrink-0 w-10 h-10 rounded-full border-2 border-stone-200 flex items-center justify-center text-ink-500 transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14"/><path d="M5 12h14"/>
+      </svg>
+    </span>
+  </summary>
+  <div class="px-6 pb-6 -mt-1 text-slate-600 leading-relaxed">
+    <slot />
+  </div>
+</details>
+
+<style>
+  /* Closed state hover — border + icon go red */
+  .faq-item:not([open]):hover .faq-icon {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  /* Open state — solid red bg with white icon, stable on hover */
+  .faq-item[open] .faq-icon {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+  }
+  .faq-item[open]:hover .faq-icon {
+    background: var(--color-primary-600);
+    border-color: var(--color-primary-600);
+    color: white;
+  }
+</style>

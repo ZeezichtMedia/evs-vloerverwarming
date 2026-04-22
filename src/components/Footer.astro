@@ -1,72 +1,131 @@
 ---
 const currentYear = new Date().getFullYear();
+
+const services = [
+  { href: '/vloerverwarming-frezen', label: 'Vloerverwarming frezen' },
+  { href: '/dichtsmeren-egaliseren', label: 'Dichtsmeren & Egaliseren' },
+  { href: '/vloeren-schuren', label: 'Vloeren schuren' },
+  { href: '/diensten', label: 'Alle diensten' },
+];
+const company = [
+  { href: '/contact', label: 'Contact' },
+  { href: '/offerte', label: 'Offerte aanvragen' },
+  { href: '/privacy-policy', label: 'Privacyverklaring' },
+  { href: '/voorwaarden', label: 'Algemene voorwaarden' },
+];
 ---
 
-<footer class="bg-white text-gray-900 pt-16 pb-8 border-t border-gray-100">
-  <div class="container">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<footer class="relative bg-ink-800 text-white overflow-hidden heat-glow" transition:persist transition:name="persistent-footer">
+  <div class="absolute inset-0 grain"></div>
+
+  <!-- Top: big CTA strip -->
+  <div class="relative border-b border-white/5">
+    <div class="container py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[1.5fr_1fr] gap-10 items-center">
+        <div>
+          <span class="eyebrow eyebrow-light mb-5 inline-flex">Klaar om te beginnen?</span>
+          <h2 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.02] tracking-tight">
+            Laten we jouw vloer<br/>
+            <span class="text-primary">klaar maken</span> voor warmte.
+          </h2>
+        </div>
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+          <a href="/offerte" class="btn-pill btn-primary w-full justify-center">
+            Offerte aanvragen
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="tel:+31613564546" class="btn-pill btn-ghost w-full justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            06 13 56 45 46
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main grid -->
+  <div class="relative container py-14 lg:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
       <!-- Brand -->
-      <div>
-        <a href="/" class="text-2xl font-black text-navy tracking-tight flex items-center gap-2 mb-6">
-          <span class="text-3xl text-primary">EvS</span> bv
+      <div class="lg:col-span-5">
+        <a href="/" class="inline-block mb-6">
+          <img
+            src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2021/05/logo-evs-vloerverwarming-wit-e1752674223249.webp"
+            alt="EVS Vloerverwarming"
+            class="h-11 w-auto"
+          />
         </a>
-        <p class="text-gray-600 leading-relaxed mb-6">
-          Specialist in stofvrij vloerverwarming frezen. Wij staan voor betrouwbaarheid, vakmanschap en een persoonlijke aanpak in Zeeland en West-Brabant.
+        <p class="text-white/60 leading-relaxed max-w-md mb-6">
+          Specialist in stofvrij vloerverwarming frezen in Zeeland en West-Brabant. Vakmanschap, netheid en een persoonlijke aanpak sinds 2001.
         </p>
+        <div class="flex items-center gap-3">
+          <div class="stat-pill">
+            <span class="pulse-dot"></span>
+            <span class="text-xs uppercase tracking-widest font-heading font-bold text-white/80">Nu beschikbaar</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="lg:col-span-3">
+        <h3 class="font-heading font-bold text-white text-sm uppercase tracking-[0.2em] mb-5 pb-3 border-b border-white/10">Diensten</h3>
+        <ul class="space-y-3">
+          {services.map(s => (
+            <li>
+              <a href={s.href} class="group flex items-center gap-2 text-white/70 hover:text-white transition-colors">
+                <span class="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300"></span>
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="lg:col-span-2">
+        <h3 class="font-heading font-bold text-white text-sm uppercase tracking-[0.2em] mb-5 pb-3 border-b border-white/10">Bedrijf</h3>
+        <ul class="space-y-3">
+          {company.map(c => (
+            <li>
+              <a href={c.href} class="group flex items-center gap-2 text-white/70 hover:text-white transition-colors">
+                <span class="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300"></span>
+                {c.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <!-- Contact -->
-      <div>
-        <h3 class="text-xl font-bold mb-6 text-navy border-b-2 border-primary inline-block pb-2">Contact</h3>
-        <ul class="space-y-4 text-gray-600">
+      <div class="lg:col-span-2">
+        <h3 class="font-heading font-bold text-white text-sm uppercase tracking-[0.2em] mb-5 pb-3 border-b border-white/10">Contact</h3>
+        <ul class="space-y-4 text-white/70">
           <li class="flex items-start gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13 21.314l-4.657-4.657a8 8 0 0111.314 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            <svg class="text-primary mt-1 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
             </svg>
-            <span>Zoutelande, Zeeland</span>
+            <span>Zoutelande<br/>Zeeland</span>
           </li>
           <li class="flex items-start gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            <svg class="text-primary mt-1 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
             </svg>
-            <a href="tel:+31612345678" class="hover:text-primary transition-colors">Bel ons direct</a>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <a href="mailto:info@evs-vloerverwarming.nl" class="hover:text-primary transition-colors">info@evs-vloerverwarming.nl</a>
+            <a href="mailto:info@evs-vloerverwarming.nl" class="hover:text-white transition-colors break-all">info@evs-vloerverwarming.nl</a>
           </li>
         </ul>
-      </div>
-
-      <!-- Links -->
-      <div>
-        <h3 class="text-xl font-bold mb-6 text-navy border-b-2 border-primary inline-block pb-2">Snel naar</h3>
-        <ul class="space-y-3 text-gray-600">
-          <li><a href="/diensten" class="hover:text-primary transition-colors flex items-center gap-2"><span class="text-primary">›</span> Alle diensten</a></li>
-          <li><a href="/vloerverwarming-frezen" class="hover:text-primary transition-colors flex items-center gap-2"><span class="text-primary">›</span> Vloerverwarming frezen</a></li>
-          <li><a href="/contact" class="hover:text-primary transition-colors flex items-center gap-2"><span class="text-primary">›</span> Contact opnemen</a></li>
-          <li><a href="/offerte" class="hover:text-primary transition-colors flex items-center gap-2"><span class="text-primary">›</span> Offerte aanvragen</a></li>
-        </ul>
-      </div>
-      
-      <!-- Certifications / Extra -->
-      <div>
-        <h3 class="text-xl font-bold mb-6 text-navy border-b-2 border-primary inline-block pb-2">Werkgebied</h3>
-        <p class="text-gray-600 mb-4">
-          Wij zijn actief in heel Zeeland en West-Brabant. Van Vlissingen tot Breda.
-        </p>
       </div>
     </div>
-    
-    <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-      <p>&copy; {currentYear} EvS Vloerverwarming. Alle rechten voorbehouden.</p>
-      <div class="mt-4 md:mt-0">
-        <a href="/privacy" class="hover:text-primary mr-4 transition-colors">Privacyverklaring</a>
-        <a href="/voorwaarden" class="hover:text-primary transition-colors">Algemene Voorwaarden</a>
-      </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="relative border-t border-white/5">
+    <div class="container py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/50">
+      <p>&copy; {currentYear} EvS Vloerverwarming · Alle rechten voorbehouden</p>
+      <p>Vakmanschap met karakter · <span class="text-primary">Zeeland & West-Brabant</span></p>
     </div>
   </div>
 </footer>

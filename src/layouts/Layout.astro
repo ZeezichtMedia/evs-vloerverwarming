@@ -1,12 +1,18 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title: string;
 	description?: string;
+	transparentHeader?: boolean;
 }
 
-const { title, description = "Specialist in vloerverwarming frezen, betonboren en sleuven zagen. EVS Vloerverwarming staat voor kwaliteit en vakmanschap in Zeeland en West-Brabant." } = Astro.props;
+const {
+	title,
+	description = "Specialist in vloerverwarming frezen, betonboren en sleuven zagen. EVS Vloerverwarming staat voor kwaliteit en vakmanschap in Zeeland en West-Brabant.",
+	transparentHeader = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -17,9 +23,61 @@ const { title, description = "Specialist in vloerverwarming frezen, betonboren e
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<meta name="theme-color" content="#e63946" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
 		<title>{title}</title>
+		<ClientRouter />
 	</head>
-	<body>
+	<body class={transparentHeader ? 'has-transparent-header' : ''} data-transparent-header={transparentHeader ? 'true' : 'false'}>
 		<slot />
+
+		<!-- Scroll reveal observer -->
+		<script>
+			const setupReveal = () => {
+				const items = document.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible), .reveal-scale:not(.visible)');
+				if (!('IntersectionObserver' in window)) {
+					items.forEach((el) => el.classList.add('visible'));
+					return;
+				}
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				}, { rootMargin: '0px 0px -80px 0px', threshold: 0.08 });
+				items.forEach((el) => observer.observe(el));
+			};
+			setupReveal();
+			document.addEventListener('astro:page-load', setupReveal);
+		</script>
+
+		<!-- Progress bar for view transitions -->
+		<script>
+			const bar = document.createElement('div');
+			bar.id = 'page-progress';
+			bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0;background:#e63946;z-index:9999;transition:width 0.3s cubic-bezier(0.16,1,0.3,1);pointer-events:none;opacity:0;';
+			document.body.appendChild(bar);
+
+			document.addEventListener('astro:before-preparation', () => {
+				bar.style.opacity = '1';
+				bar.style.width = '30%';
+			});
+			document.addEventListener('astro:after-preparation', () => {
+				bar.style.width = '70%';
+			});
+			document.addEventListener('astro:page-load', () => {
+				bar.style.width = '100%';
+				setTimeout(() => {
+					bar.style.opacity = '0';
+					bar.style.width = '0';
+				}, 250);
+				// Scroll to top on navigation (if not anchor)
+				if (!window.location.hash) window.scrollTo({ top: 0, behavior: 'instant' });
+			});
+		</script>
 	</body>
 </html>

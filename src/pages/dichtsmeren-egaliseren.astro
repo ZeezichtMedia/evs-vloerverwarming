@@ -2,126 +2,130 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import FAQItem from '../components/ui/FAQItem.astro';
 ---
 
-<Layout title="Dichtsmeren & Egaliseren | EVS Vloerverwarming">
+<Layout title="Dichtsmeren & Egaliseren | EVS Vloerverwarming" transparentHeader={true}>
   <Header />
   <main>
-    <section class="relative py-24 min-h-[400px] flex items-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img 
-              src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/Gleuven-dichtzetten-EVS.jpeg" 
-              alt="Dichtsmeren en egaliseren" 
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/30"></div>
-        </div>
-        <div class="container relative z-10 text-white text-center md:text-left">
-            <h1 class="text-4xl md:text-5xl font-black mb-4 drop-shadow-lg text-white">Dichtsmeren & Egaliseren</h1>
-            <p class="text-xl text-white font-medium max-w-2xl drop-shadow-md">De perfecte afwerking voor een optimaal rendement.</p>
-        </div>
-    </section>
+    <PageHeader
+      eyebrow="Dienst 02 — Afwerken"
+      title={`De perfecte<br/><span class="text-primary">afwerking</span>.`}
+      lead="Dichtsmeren of egaliseren — spiegelglad resultaat voor optimaal rendement van je vloerverwarming."
+      image="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/Gleuven-dichtzetten-EVS.jpeg"
+      imageAlt="Dichtsmeren en egaliseren"
+      breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Diensten', href: '/diensten' }, { label: 'Dichtsmeren & Egaliseren' }]}
+    />
 
-    <section class="py-20 bg-gray-50">
-        <div class="container">
-            <div class="flex flex-col lg:flex-row gap-12">
-                <div class="lg:w-2/3">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg mb-12 border border-gray-100">
-                        <h2 class="text-3xl font-bold text-navy mb-6">De basis voor uw nieuwe vloer</h2>
-                        <p class="text-gray-600 leading-relaxed mb-4">
-                            Na het infrezen van de vloerverwarming is de vloer nog niet klaar voor de eindafwerking (tegels, PVC, laminaat of parket). De sleuven moeten eerst vakkundig worden dichtgezet. Daarnaast is egaliseren vaak noodzakelijk, zeker bij PVC vloeren die volledige vlakheid vereisen.
-                        </p>
-                        <p class="text-gray-600 leading-relaxed">
-                            EvS zorgt voor een spiegelglad resultaat, zodat de vloerlegger direct aan de slag kan.
-                        </p>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8 mb-12">
-                        <div>
-                            <h3 class="text-2xl font-bold text-navy mb-4">1. Sleuven dichtsmeren</h3>
-                            <p class="text-gray-600 mb-4">Dit is de minimale afwerking. De gefreesde sleuven worden opgevuld met een speciale reparatiemortel.</p>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start gap-2"><span class="text-primary font-bold">✓</span> Bescherming van de buizen</li>
-                                <li class="flex items-start gap-2"><span class="text-primary font-bold">✓</span> Betere warmteoverdracht</li>
-                                <li class="flex items-start gap-2"><span class="text-primary font-bold">✓</span> Voorkomt lucht rondom buizen</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-navy mb-4">2. Egaliseren</h3>
-                            <p class="text-gray-600 mb-4">Hierbij voorzien we de gehele vloer van een dunne toplaag egaline. Dit is een vloeibare mortel die zichzelf waterpas trekt.</p>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start gap-2"><span class="text-primary font-bold">✓</span> Spiegelglad resultaat</li>
-                                <li class="flex items-start gap-2"><span class="text-primary font-bold">✓</span> Noodzakelijk voor verlijmd PVC</li>
-                                <li class="flex items-start gap-2"><span class="text-primary font-bold">✓</span> Werkt kleine oneffenheden weg</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <h3 class="text-2xl font-bold text-navy mb-6">Wanneer egaliseren?</h3>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                       EvS adviseert om te egaliseren wanneer u kiest voor een <strong>verlijmde PVC vloer</strong>, marmoleum of wanneer de huidige dekvloer erg ongelijk is. Bij tegels, laminaat of parket is dichtsmeren van de sleuven vaak voldoende, mits de basisvloer vlak is. Overleg dit altijd met uw vloerleverancier.
-                    </p>
-
-                    <!-- FAQ Section -->
-                    <h3 class="text-2xl font-bold text-navy mb-6">Veelgestelde vragen</h3>
-                    <div class="space-y-4 mb-12">
-                        <details class="group bg-white rounded-xl shadow-sm border border-gray-100 p-4 [&_summary::-webkit-details-marker]:hidden">
-                            <summary class="flex cursor-pointer items-center justify-between gap-1.5 font-bold text-navy">
-                                <span>Wat is de droogtijd van egaline?</span>
-                                <span class="shrink-0 rounded-full bg-white p-1.5 text-navy sm:p-3 group-open:bg-primary group-open:text-white transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </span>
-                            </summary>
-                            <div class="mt-4 leading-relaxed text-gray-600">
-                                Na het aanbrengen is egaline meestal na 4 uur beloopbaar. Voor het leggen van de eindvloer moet het echter volledig droog zijn. Reken bij normale omstandigheden op ca. 24 tot 48 uur voordat er PVC geplakt kan worden (afhankelijk van laagdikte en ventilatie).
-                            </div>
-                        </details>
-
-                        <details class="group bg-white rounded-xl shadow-sm border border-gray-100 p-4 [&_summary::-webkit-details-marker]:hidden">
-                            <summary class="flex cursor-pointer items-center justify-between gap-1.5 font-bold text-navy">
-                                <span>Kan ik direct tegels lijmen op de sleuven?</span>
-                                <span class="shrink-0 rounded-full bg-white p-1.5 text-navy sm:p-3 group-open:bg-primary group-open:text-white transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </span>
-                            </summary>
-                            <div class="mt-4 leading-relaxed text-gray-600">
-                                Het is sterk aan te raden de sleuven eerst dicht te smeren. Dit beschermt de buizen tijdens het tegelen en zorgt voor een betere warmteverspreiding. Direct tegelen op open buizen brengt risico's met zich mee.
-                            </div>
-                        </details>
-                    </div>
-
-                    <a href="/offerte" class="inline-block bg-primary text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-primary-dark transition-colors transform hover:-translate-y-1">
-                        Ontvang een prijsopgave
-                    </a>
-                </div>
-                 <div class="lg:w-1/3">
-                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 sticky top-24">
-                        <h3 class="text-xl font-bold text-navy mb-4 border-b border-gray-100 pb-2">Gerelateerde diensten</h3>
-                        <ul class="space-y-3">
-                            <li><a href="/vloerverwarming-frezen" class="text-gray-600 hover:text-primary block py-1 transition-colors flex items-center justify-between group">
-                                Vloerverwarming frezen <span class="text-gray-300 group-hover:text-primary">→</span>
-                            </a></li>
-                            <li><a href="/vloeren-schuren" class="text-gray-600 hover:text-primary block py-1 transition-colors flex items-center justify-between group">
-                                Vloeren schuren <span class="text-gray-300 group-hover:text-primary">→</span>
-                            </a></li>
-                            <li><a href="/contact" class="text-gray-600 hover:text-primary block py-1 transition-colors flex items-center justify-between group">
-                                Contact opnemen <span class="text-gray-300 group-hover:text-primary">→</span>
-                            </a></li>
-                        </ul>
-
-                         <div class="mt-8 bg-primary/5 rounded-lg p-6 text-center">
-                            <p class="font-bold text-navy mb-2">Advies nodig?</p>
-                            <p class="text-sm text-gray-600 mb-4">Twijfelt u over egaliseren?</p>
-                            <a href="tel:+31612345678" class="text-primary font-bold text-lg hover:underline">06 - 12 34 56 78</a>
-                        </div>
-                    </div>
-                </div>
+    <section class="py-20 lg:py-28 bg-white">
+      <div class="container">
+        <div class="grid lg:grid-cols-[2fr_1fr] gap-12 lg:gap-16">
+          <div class="min-w-0">
+            <div class="reveal">
+              <span class="eyebrow mb-4 inline-flex">Wat wij doen</span>
+              <h2 class="font-heading font-black text-4xl lg:text-5xl text-ink-500 leading-tight mb-6 text-balance">
+                De basis voor je <span class="text-primary">nieuwe vloer</span>.
+              </h2>
+              <p class="text-slate-600 text-lg leading-relaxed mb-5">
+                Na het infrezen van de vloerverwarming is de vloer nog niet klaar voor de eindafwerking. De sleuven moeten eerst vakkundig worden dichtgezet. Daarnaast is egaliseren vaak noodzakelijk, zeker bij PVC vloeren die volledige vlakheid vereisen.
+              </p>
+              <p class="text-slate-600 text-lg leading-relaxed">
+                EvS zorgt voor een spiegelglad resultaat, zodat de vloerlegger direct aan de slag kan.
+              </p>
             </div>
+
+            <div class="mt-14 lg:mt-20 grid md:grid-cols-2 gap-5">
+              <div class="reveal bg-stone-50 border border-stone-200 rounded-3xl p-8 hover:border-primary/50 transition-colors">
+                <span class="font-heading font-black text-primary text-5xl leading-none block mb-4">01</span>
+                <h3 class="font-heading font-black text-2xl text-ink-500 mb-3">Sleuven dichtsmeren</h3>
+                <p class="text-slate-600 mb-5 leading-relaxed">De gefreesde sleuven worden opgevuld met een speciale reparatiemortel.</p>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2 text-slate-700"><span class="text-primary mt-1">✓</span> Bescherming van de buizen</li>
+                  <li class="flex items-start gap-2 text-slate-700"><span class="text-primary mt-1">✓</span> Betere warmteoverdracht</li>
+                  <li class="flex items-start gap-2 text-slate-700"><span class="text-primary mt-1">✓</span> Voorkomt lucht rondom buizen</li>
+                </ul>
+              </div>
+              <div class="reveal stagger-2 bg-primary text-white rounded-3xl p-8 relative overflow-hidden shadow-xl shadow-primary/25">
+                <div class="absolute top-0 right-0 w-60 h-60 opacity-30 pointer-events-none" style="background: radial-gradient(circle, rgba(245, 158, 11, 0.6), transparent 65%);"></div>
+                <div class="relative">
+                  <span class="font-heading font-black text-white/40 text-5xl leading-none block mb-4">02</span>
+                  <h3 class="font-heading font-black text-2xl text-white mb-3">Egaliseren</h3>
+                  <p class="text-white/85 mb-5 leading-relaxed">Dunne toplaag egaline over de gehele vloer — vloeibare mortel die zichzelf waterpas trekt.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-start gap-2 text-white"><span class="text-white mt-1">✓</span> Spiegelglad resultaat</li>
+                    <li class="flex items-start gap-2 text-white"><span class="text-white mt-1">✓</span> Noodzakelijk voor verlijmd PVC</li>
+                    <li class="flex items-start gap-2 text-white"><span class="text-white mt-1">✓</span> Werkt oneffenheden weg</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-14 lg:mt-20 reveal">
+              <h3 class="font-heading font-black text-3xl text-ink-500 mb-5">Wanneer egaliseren?</h3>
+              <p class="text-slate-600 text-lg leading-relaxed">
+                EvS adviseert egaliseren wanneer je kiest voor een <strong class="text-ink-500">verlijmde PVC vloer</strong>, marmoleum of wanneer de huidige dekvloer erg ongelijk is. Bij tegels, laminaat of parket is dichtsmeren van de sleuven vaak voldoende, mits de basisvloer vlak is. Overleg dit altijd met je vloerleverancier.
+              </p>
+            </div>
+
+            <div class="mt-14 lg:mt-20">
+              <h3 class="reveal font-heading font-black text-3xl text-ink-500 mb-8">Veelgestelde vragen</h3>
+              <div class="space-y-3">
+                <FAQItem question="Wat is de droogtijd van egaline?">
+                  Na het aanbrengen is egaline meestal na 4 uur beloopbaar. Voor het leggen van de eindvloer moet het echter volledig droog zijn. Reken bij normale omstandigheden op ca. 24 tot 48 uur voordat er PVC geplakt kan worden (afhankelijk van laagdikte en ventilatie).
+                </FAQItem>
+                <FAQItem question="Kan ik direct tegels lijmen op de sleuven?">
+                  Het is sterk aan te raden de sleuven eerst dicht te smeren. Dit beschermt de buizen tijdens het tegelen en zorgt voor een betere warmteverspreiding. Direct tegelen op open buizen brengt risico's met zich mee.
+                </FAQItem>
+              </div>
+            </div>
+
+            <div class="mt-14 reveal">
+              <a href="/offerte" class="btn-pill btn-primary">
+                Ontvang een prijsopgave
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <aside class="lg:sticky lg:top-28 h-fit space-y-5">
+            <div class="reveal-right bg-primary text-white rounded-3xl p-7 overflow-hidden relative shadow-xl shadow-primary/25">
+              <div class="absolute inset-0 opacity-30 pointer-events-none" style="background: radial-gradient(ellipse at top right, rgba(245, 158, 11, 0.7), transparent 60%);"></div>
+              <div class="relative">
+                <span class="inline-flex items-center gap-2 text-white/85 font-heading font-bold text-[11px] uppercase tracking-[0.22em] mb-3">
+                  <span class="pulse-dot"></span>
+                  Advies nodig?
+                </span>
+                <h4 class="font-heading font-black text-white text-2xl mb-3">Bel met Erik</h4>
+                <p class="text-white/85 text-sm mb-6 leading-relaxed">Twijfel je over egaliseren? Eén telefoontje en je weet wat je moet doen.</p>
+                <a href="tel:+31613564546" class="btn-pill btn-white w-full justify-center">
+                  06 13 56 45 46
+                </a>
+              </div>
+            </div>
+
+            <div class="reveal-right stagger-2 bg-white border border-stone-200 rounded-3xl p-7">
+              <h4 class="font-heading font-bold text-ink-500 text-sm uppercase tracking-[0.18em] mb-5 pb-4 border-b border-stone-200">Gerelateerde diensten</h4>
+              <ul class="space-y-3">
+                <li><a href="/vloerverwarming-frezen" class="group flex items-center justify-between text-slate-600 hover:text-primary py-2 transition-colors">
+                  <span>Vloerverwarming frezen</span>
+                  <span class="text-stone-300 group-hover:text-primary group-hover:translate-x-1 transition-all">→</span>
+                </a></li>
+                <li><a href="/vloeren-schuren" class="group flex items-center justify-between text-slate-600 hover:text-primary py-2 transition-colors">
+                  <span>Vloeren schuren</span>
+                  <span class="text-stone-300 group-hover:text-primary group-hover:translate-x-1 transition-all">→</span>
+                </a></li>
+                <li><a href="/contact" class="group flex items-center justify-between text-slate-600 hover:text-primary py-2 transition-colors">
+                  <span>Contact opnemen</span>
+                  <span class="text-stone-300 group-hover:text-primary group-hover:translate-x-1 transition-all">→</span>
+                </a></li>
+              </ul>
+            </div>
+          </aside>
         </div>
+      </div>
     </section>
   </main>
   <Footer />

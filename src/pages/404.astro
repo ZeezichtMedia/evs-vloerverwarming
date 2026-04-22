@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const quickLinks = [
+  { href: '/diensten', label: 'Alle diensten' },
+  { href: '/vloerverwarming-frezen', label: 'Vloerverwarming frezen' },
+  { href: '/offerte', label: 'Offerte aanvragen' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<Layout title="Pagina niet gevonden | EVS Vloerverwarming" transparentHeader={true}>
+  <Header />
+  <main>
+    <section class="relative min-h-[100svh] -mt-20 flex items-center overflow-hidden bg-ink-500 text-white">
+      <!-- Background image -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://www.evs-vloerverwarming.nl/wp-content/uploads/2025/09/PHOTO-2025-07-14-20-22-08_result.webp"
+          alt=""
+          class="w-full h-full object-cover opacity-25"
+          style="animation: ken-burns 18s ease-out forwards;"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-ink-500 via-ink-500/80 to-ink-500/40"></div>
+      </div>
+
+      <!-- Heat glow accents -->
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/20 blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-ember-400/10 blur-3xl"></div>
+      <div class="absolute inset-0 grain z-[1]"></div>
+
+      <div class="relative z-10 container max-w-4xl text-center pt-28 pb-20">
+        <!-- Big 404 -->
+        <div class="relative inline-block mb-8" style="animation: slide-up 0.8s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0;">
+          <h1 class="font-heading font-black text-white text-[9rem] sm:text-[12rem] lg:text-[16rem] leading-[0.85] tracking-[-0.04em]">
+            4<span class="text-primary">0</span>4
+          </h1>
+          <div class="absolute -inset-8 bg-primary/10 blur-3xl -z-10"></div>
+        </div>
+
+        <div style="animation: slide-up 0.8s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; animation-delay: 0.15s;">
+          <span class="eyebrow eyebrow-light mb-5 inline-flex">Zoekt u wat?</span>
+          <h2 class="font-heading font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5 text-balance">
+            Deze vloer hebben wij<br/>
+            <span class="text-primary">nog niet gefreesd</span>.
+          </h2>
+          <p class="text-white/70 text-lg max-w-xl mx-auto leading-relaxed mb-10">
+            De pagina die je zoekt bestaat niet (meer). Misschien is 'ie verplaatst, of heb je een typefout gemaakt. Geen zorgen — we helpen je graag verder.
+          </p>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12" style="animation: slide-up 0.8s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; animation-delay: 0.3s;">
+          <a href="/" class="btn-pill btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Terug naar home
+          </a>
+          <a href="/offerte" class="btn-pill btn-ghost">
+            Direct offerte aanvragen
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Quick links -->
+        <div class="pt-10 border-t border-white/10" style="animation: slide-up 0.8s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; animation-delay: 0.45s;">
+          <p class="font-heading font-bold text-xs uppercase tracking-[0.22em] text-white/50 mb-5">Of probeer deze</p>
+          <div class="flex flex-wrap gap-3 justify-center">
+            {quickLinks.map(link => (
+              <a
+                href={link.href}
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white/80 hover:bg-primary hover:border-primary hover:text-white transition-all text-sm font-heading font-bold"
+              >
+                {link.label}
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Phone fallback -->
+        <div class="mt-12 flex items-center justify-center gap-3 text-white/60" style="animation: slide-up 0.8s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; animation-delay: 0.6s;">
+          <span class="pulse-dot"></span>
+          <p class="text-sm">
+            Of bel direct met Erik:
+            <a href="tel:+31613564546" class="text-white font-heading font-bold hover:text-primary transition-colors ml-1">06 13 56 45 46</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
