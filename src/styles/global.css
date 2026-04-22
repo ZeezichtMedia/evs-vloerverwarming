@@ -18,14 +18,6 @@
     --color-ink-800: #0a0d13;
     --color-ink-900: #05070b;
 
-    /* Ember — warm amber accent (heat / warmte) */
-    --color-ember-50: #fef7e6;
-    --color-ember-100: #fdecc4;
-    --color-ember-300: #fbbf24;
-    --color-ember-400: #f59e0b;
-    --color-ember-500: #d97706;
-    --color-ember-600: #b45309;
-
     /* Stone — warme grijstinten */
     --color-stone-50: #faf8f5;
     --color-stone-100: #f4f1ec;
@@ -180,7 +172,7 @@
 }
 
 /* ============================================================
-   HEAT GLOW — signature element (subtle warm radial)
+   BRAND GLOW — subtle primary radial for dark sections
    ============================================================ */
 .heat-glow {
     position: relative;
@@ -190,8 +182,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(245, 158, 11, 0.12), transparent 70%),
-      radial-gradient(ellipse 50% 40% at 15% 90%, rgba(230, 57, 70, 0.10), transparent 60%);
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(230, 57, 70, 0.10), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 15% 90%, rgba(230, 57, 70, 0.08), transparent 60%);
     pointer-events: none;
     z-index: 0;
 }
@@ -343,10 +335,12 @@
     background: var(--color-primary);
 }
 .eyebrow-light {
-    color: var(--color-ember-300);
+    color: #ffffff;
+    opacity: 0.9;
 }
 .eyebrow-light::before {
-    background: var(--color-ember-300);
+    background: var(--color-primary);
+    opacity: 1;
 }
 
 /* ============================================================
