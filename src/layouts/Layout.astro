@@ -6,28 +6,97 @@ interface Props {
 	title: string;
 	description?: string;
 	transparentHeader?: boolean;
+	ogImage?: string;
+	noindex?: boolean;
 }
 
 const {
 	title,
-	description = "Specialist in vloerverwarming frezen, betonboren en sleuven zagen. EVS Vloerverwarming staat voor kwaliteit en vakmanschap in Zeeland en West-Brabant.",
+	description = "Specialist in stofvrij vloerverwarming frezen, dichtsmeren en egaliseren in Zeeland en West-Brabant. Vakmanschap sinds 2001.",
 	transparentHeader = false,
+	ogImage = '/images/hero-1.webp',
+	noindex = false,
 } = Astro.props;
+
+const siteUrl = 'https://www.evs-vloerverwarming.nl';
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const absoluteOg = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteUrl).href;
+
+// LocalBusiness JSON-LD (site-wide)
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "LocalBusiness",
+	"@id": siteUrl + "/#business",
+	"name": "EVS Vloerverwarming",
+	"legalName": "EvS Vloerverwarming",
+	"description": description,
+	"url": siteUrl,
+	"telephone": "+31613564546",
+	"email": "info@evs-vloerverwarming.nl",
+	"image": siteUrl + "/images/hero-1.webp",
+	"logo": siteUrl + "/images/logo-evs-wit.webp",
+	"priceRange": "€€",
+	"address": {
+		"@type": "PostalAddress",
+		"addressLocality": "Zoutelande",
+		"addressRegion": "Zeeland",
+		"addressCountry": "NL"
+	},
+	"areaServed": [
+		{ "@type": "State", "name": "Zeeland" },
+		{ "@type": "Place", "name": "West-Brabant" }
+	],
+	"foundingDate": "2001",
+	"founder": { "@type": "Person", "name": "Erik van Sighem" },
+	"sameAs": [],
+	"openingHoursSpecification": [{
+		"@type": "OpeningHoursSpecification",
+		"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+		"opens": "08:00",
+		"closes": "17:00"
+	}]
+};
 ---
 
 <!doctype html>
 <html lang="nl">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
 		<meta name="theme-color" content="#e63946" />
+
+		<!-- Primary meta -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="EVS Vloerverwarming" />
+		<meta property="og:locale" content="nl_NL" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<title>{title}</title>
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={absoluteOg} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+
+		<!-- Twitter / X -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={absoluteOg} />
+
+		<!-- Preconnect for fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- JSON-LD structured data -->
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
 		<ClientRouter />
 	</head>
 	<body class={transparentHeader ? 'has-transparent-header' : ''} data-transparent-header={transparentHeader ? 'true' : 'false'}>
@@ -75,7 +144,6 @@ const {
 					bar.style.opacity = '0';
 					bar.style.width = '0';
 				}, 250);
-				// Scroll to top on navigation (if not anchor)
 				if (!window.location.hash) window.scrollTo({ top: 0, behavior: 'instant' });
 			});
 		</script>

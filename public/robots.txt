@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://www.evs-vloerverwarming.nl/sitemap-index.xml
