@@ -93,27 +93,42 @@ import PageHeader from '../components/ui/PageHeader.astro';
               Jouw vraag, <span class="text-primary">onze aandacht</span>.
             </h2>
 
-            <form class="space-y-5">
+            <!-- Success -->
+            <div id="contact-success" class="hidden text-center py-10">
+              <div class="w-14 h-14 mx-auto mb-5 rounded-full bg-green-100 text-green-600 grid place-items-center text-2xl font-bold">✓</div>
+              <h3 class="font-heading font-black text-2xl text-ink-500 mb-2">Bericht verstuurd!</h3>
+              <p class="text-slate-600">We nemen zo snel mogelijk contact met je op.</p>
+            </div>
+
+            <form id="contact-form" class="space-y-5" novalidate>
+              <!-- Honeypot (verborgen voor mensen) -->
+              <div style="position:absolute;left:-9999px;" aria-hidden="true">
+                <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+              </div>
+
               <div class="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2">Naam</label>
-                  <input type="text" class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="Je naam" />
+                  <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2" for="contact-naam">Naam*</label>
+                  <input id="contact-naam" type="text" name="naam" required class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="Je naam" />
                 </div>
                 <div>
-                  <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2">Telefoon</label>
-                  <input type="tel" class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="06 13 56 45 46" />
+                  <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2" for="contact-telefoon">Telefoon</label>
+                  <input id="contact-telefoon" type="tel" name="telefoon" class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="06 13 56 45 46" />
                 </div>
               </div>
               <div>
-                <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2">E-mailadres</label>
-                <input type="email" class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="jij@email.nl" />
+                <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2" for="contact-email">E-mailadres*</label>
+                <input id="contact-email" type="email" name="email" required class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="jij@email.nl" />
               </div>
               <div>
-                <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2">Bericht</label>
-                <textarea rows="6" class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none" placeholder="Hoe kan EvS je helpen?"></textarea>
+                <label class="block text-xs font-heading font-bold text-ink-500 uppercase tracking-[0.15em] mb-2" for="contact-bericht">Bericht*</label>
+                <textarea id="contact-bericht" name="bericht" rows="6" required class="w-full bg-stone-50 border-2 border-stone-200 rounded-xl px-4 py-3.5 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none" placeholder="Hoe kan EvS je helpen?"></textarea>
               </div>
-              <button type="submit" class="btn-pill btn-primary w-full justify-center py-4">
-                Bericht versturen
+
+              <div id="contact-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm"></div>
+
+              <button id="contact-submit" type="submit" class="btn-pill btn-primary w-full justify-center py-4 disabled:opacity-60 disabled:cursor-not-allowed">
+                <span data-label>Bericht versturen</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
                 </svg>
@@ -128,4 +143,55 @@ import PageHeader from '../components/ui/PageHeader.astro';
     </section>
   </main>
   <Footer />
+
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('contact-form');
+      if (!form || form.dataset.wired === 'true') return;
+      form.dataset.wired = 'true';
+
+      const submitBtn = document.getElementById('contact-submit');
+      const btnLabel = submitBtn.querySelector('[data-label]');
+      const errorBox = document.getElementById('contact-error');
+      const successBox = document.getElementById('contact-success');
+
+      function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.classList.remove('hidden');
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorBox.classList.add('hidden');
+
+        const data = Object.fromEntries(new FormData(form).entries());
+        if (!data.naam || !data.email || !data.bericht) {
+          showError('Vul alle verplichte velden in.');
+          return;
+        }
+
+        submitBtn.disabled = true;
+        btnLabel.textContent = 'Versturen...';
+
+        try {
+          const res = await fetch('/api/send-contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          if (!res.ok) {
+            const body = await res.json().catch(() => ({}));
+            throw new Error(body.error || 'Versturen mislukt.');
+          }
+          form.classList.add('hidden');
+          successBox.classList.remove('hidden');
+          window.scrollTo({ top: successBox.offsetTop - 120, behavior: 'smooth' });
+        } catch (err) {
+          showError(err.message || 'Er ging iets mis. Probeer het later opnieuw.');
+          submitBtn.disabled = false;
+          btnLabel.textContent = 'Bericht versturen';
+        }
+      });
+    })();
+  </script>
 </Layout>
