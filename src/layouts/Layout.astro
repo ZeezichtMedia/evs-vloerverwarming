@@ -98,6 +98,8 @@ const jsonLd = {
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 		<ClientRouter />
+	  <!-- Vercel Web Analytics: bezoekers meten zonder cookies, alleen op productie -->
+	  {import.meta.env.PROD && <script is:inline defer src="/_vercel/insights/script.js"></script>}
 	</head>
 	<body class={transparentHeader ? 'has-transparent-header' : ''} data-transparent-header={transparentHeader ? 'true' : 'false'}>
 		<slot />
